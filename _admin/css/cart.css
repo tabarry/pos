@@ -1,0 +1,15 @@
+#cart table{
+    width:100% !important;
+    background-color: #FFF !important;
+}
+#cart table tr td{
+    border-bottom:1px solid #CCC;
+    padding:3px;
+    line-height: 15px !important;
+}
+.topSpacer5{
+    margin-top:5px;
+}
+.caps{
+    text-transform: uppercase;
+}
