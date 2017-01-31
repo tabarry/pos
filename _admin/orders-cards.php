@@ -53,7 +53,7 @@ $downloadAccessPDF = FALSE;
             }
 
         </script>
-      
+
 
     </head>
 
@@ -115,7 +115,7 @@ $downloadAccessPDF = FALSE;
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>orders/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>orders.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -142,7 +142,7 @@ $downloadAccessPDF = FALSE;
                                         </div>
                                         <?php if ($_GET['q']) { ?>
                                             <div class="lineSpacer clear"></div>
-                                            <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>orders-cards/">Clear search.</a></div>
+                                            <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>orders-cards.php/">Clear search.</a></div>
                                             </div>
                                         <?php } ?>
                                     </fieldset>
@@ -151,7 +151,7 @@ $downloadAccessPDF = FALSE;
 
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>orders-add/" class="btn btn-black">Add new..</a></div>
+                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>orders-add.php/" class="btn btn-black">Add new..</a></div>
                                 <?php } ?>
                                 <?php
                                 $fieldsArray = array('order__Number', 'order__Customer_Name', 'order__Mobile_Number');
@@ -195,24 +195,24 @@ $downloadAccessPDF = FALSE;
                                                 <header>
                                                     <?php if ($editAccess == TRUE) { ?>
 
-                                                        <a href="<?php echo ADMIN_URL; ?>orders-update/<?php echo $row['order__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <a href="<?php echo ADMIN_URL; ?>orders-update.php/<?php echo $row['order__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                     <?php } ?>
 
                                                     <?php if ($deleteAccess == TRUE) { ?>
 
-                                                        <a onclick="return delById('card_<?php echo $row['order__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>orders-remote/delete/<?php echo $row['order__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <a onclick="return delById('card_<?php echo $row['order__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>orders-remote.php/delete/<?php echo $row['order__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
                                                     <?php } ?>
 
 
 
-                                                    <a  href="<?php echo ADMIN_URL; ?>pos-remote/print-invoice/<?php echo $row['order__UID']; ?>/<?php echo $row['order__Session']?>/" class="btn btn-primary" target="remote"><i class="fa fa-print"></i> Customer Copy </a>
+                                                    <a  href="<?php echo ADMIN_URL; ?>pos-remote.php/print-invoice/<?php echo $row['order__UID']; ?>/<?php echo $row['order__Session'] ?>/" class="btn btn-primary" target="remote"><i class="fa fa-print"></i> Customer Copy </a>
 
-                                                    <a  href="<?php echo ADMIN_URL; ?>pos-remote/print-invoice-kitchen/<?php echo $row['order__UID']; ?>/<?php echo $row['order__Session']?>/" class="btn btn-primary" target="remote"><i class="fa fa-print"></i> Kitchen Copy </a>
+                                                    <a  href="<?php echo ADMIN_URL; ?>pos-remote.php/print-invoice-kitchen/<?php echo $row['order__UID']; ?>/<?php echo $row['order__Session'] ?>/" class="btn btn-primary" target="remote"><i class="fa fa-print"></i> Kitchen Copy </a>
 
 
                                                     <?php if ($cancelAccess == TRUE) { ?>
 
-                                                        <a onclick="return delById('card_<?php echo $row['order__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>orders-remote/cancel/<?php echo $row['order__ID']; ?>/" class="btn btn-primary" target="remote"> Cancel X</a>
+                                                        <a onclick="return delById('card_<?php echo $row['order__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>orders-remote.php/cancel/<?php echo $row['order__ID']; ?>/" class="btn btn-primary" target="remote"> Cancel X</a>
                                                     <?php } ?>
 
                                                 </header>
@@ -251,8 +251,8 @@ $downloadAccessPDF = FALSE;
                                                 ?>
 
                                             </h1>
-<!--                                            <label>Time Taken So Far</label>-->
-<!--                                            <h2><?php echo $row['timeTaken']; ?></h2>-->
+                                            <!--                                            <label>Time Taken So Far</label>-->
+                                            <!--                                            <h2><?php echo $row['timeTaken']; ?></h2>-->
 
                                             <p>&nbsp;</p>
                                             <!-- TABLE -->
@@ -295,10 +295,10 @@ $downloadAccessPDF = FALSE;
                                                             <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                                 <td style="text-align: center;">
                                                                     <?php if ($editAccess == TRUE) { ?>
-                                                                        <a href="<?php echo ADMIN_URL; ?>order-details-update/<?php echo $row['orderdet__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
+                                                                        <a href="<?php echo ADMIN_URL; ?>order-details-update.php/<?php echo $row['orderdet__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
                                                                     <?php } ?>
                                                                     <?php if ($deleteAccess == TRUE) { ?>
-                                                                        <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>order-details-remote/delete/<?php echo $row['orderdet__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
+                                                                        <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>order-details-remote.php/delete/<?php echo $row['orderdet__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
                                                                     <?php } ?>
                                                                 </td>
                                                             <?php } ?>
@@ -329,13 +329,13 @@ $downloadAccessPDF = FALSE;
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>orders/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>orders.php/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>orders/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>orders.php/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

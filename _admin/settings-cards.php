@@ -87,7 +87,7 @@ $deleteAccess = FALSE;
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-table red"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>settings/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>settings.php/"><i class="fa fa-table"></i></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -111,7 +111,7 @@ $deleteAccess = FALSE;
                                             <input id="Submit" type="submit" value="Search" name="Submit" class="btn btn-primary pull-right">
                                             <?php if (isset($_GET['q'])) { ?>
                                                 <div class="lineSpacer clear"></div>
-                                                <div class="pull-right"><a class="underline" href="<?php echo ADMIN_URL; ?>settings-cards/">Clear search.</a></div>
+                                                <div class="pull-right"><a class="underline" href="<?php echo ADMIN_URL; ?>settings-cards.php/">Clear search.</a></div>
                                             <?php } ?>
                                         </div>
 
@@ -159,12 +159,12 @@ $deleteAccess = FALSE;
                                                     <header>
                                                         <?php if ($editAccess == TRUE) { ?>
 
-                                                            <a href="<?php echo ADMIN_URL; ?>settings-update/<?php echo $row['setting__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                            <a href="<?php echo ADMIN_URL; ?>settings-update.php/<?php echo $row['setting__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                         <?php } ?>
 
                                                         <?php if ($deleteAccess == TRUE) { ?>
 
-                                                            <a onclick="return delById('card_<?php echo $row['setting__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>settings-remote/delete/<?php echo $row['setting__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                            <a onclick="return delById('card_<?php echo $row['setting__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>settings-remote.php/delete/<?php echo $row['setting__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
                                                         <?php } ?>
 
                                                     </header>
@@ -202,13 +202,13 @@ $deleteAccess = FALSE;
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings.php/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings.php/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

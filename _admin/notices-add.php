@@ -5,7 +5,8 @@ include('../sulata/includes/connection.php');
 include('../sulata/includes/get-settings.php');
 include('../sulata/includes/db-structure.php');
 checkLogin();
-$pageName='Add Notices';$pageTitle='Add Notices';
+$pageName = 'Add Notices';
+$pageTitle = 'Add Notices';
 if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
     suExit(INVALID_ACCESS);
 }
@@ -84,8 +85,8 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>notices-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>notices/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>notices-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>notices.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -100,42 +101,42 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                     <p></p>
                                 </div>
                                 <!--SU STARTS-->
-                                
-        <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>notices-remote/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
 
-            <div class="gallery clearfix">
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
-<label><?php echo $dbs_sulata_notices['notice__Subject_req']; ?>Subject:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_notices['notice__Subject_html5_type'] , 'name' => 'notice__Subject', 'id' => 'notice__Subject', 'autocomplete' => 'off', 'maxlength' =>  $dbs_sulata_notices['notice__Subject_max']  , 'value'=>'',$dbs_sulata_notices['notice__Subject_html5_req'] => $dbs_sulata_notices['notice__Subject_html5_req'],'class'=>'form-control');
-                                echo suInput('input', $arg);
-                                ?>
-</div>
-</div>
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>notices-remote.php/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
 
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">        
-<label><?php echo $dbs_sulata_notices['notice__Notice_req']; ?>Notice:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_notices['notice__Notice_html5_type'], 'name' => 'notice__Notice', 'id' => 'notice__Notice');
-                                echo suInput('textarea', $arg,'',TRUE);
-                                 suCKEditor('notice__Notice');
-                                ?>
-</div>                                
-</div>
+                                    <div class="gallery clearfix">
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
+                                                <label><?php echo $dbs_sulata_notices['notice__Subject_req']; ?>Subject:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_notices['notice__Subject_html5_type'], 'name' => 'notice__Subject', 'id' => 'notice__Subject', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_notices['notice__Subject_max'], 'value' => '', $dbs_sulata_notices['notice__Subject_html5_req'] => $dbs_sulata_notices['notice__Subject_html5_req'], 'class' => 'form-control');
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>
+                                        </div>
 
-        
-        </div>
-        <div class="lineSpacer clear"></div>
-        <p>
-        <?php
-        $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
-        echo suInput('input', $arg);
-        ?>                              
-        </p>
-        <p>&nbsp;</p>
-        </form>
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">        
+                                                <label><?php echo $dbs_sulata_notices['notice__Notice_req']; ?>Notice:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_notices['notice__Notice_html5_type'], 'name' => 'notice__Notice', 'id' => 'notice__Notice');
+                                                echo suInput('textarea', $arg, '', TRUE);
+                                                suCKEditor('notice__Notice');
+                                                ?>
+                                            </div>                                
+                                        </div>
+
+
+                                    </div>
+                                    <div class="lineSpacer clear"></div>
+                                    <p>
+                                        <?php
+                                        $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
+                                        echo suInput('input', $arg);
+                                        ?>                              
+                                    </p>
+                                    <p>&nbsp;</p>
+                                </form>
 
                                 <!--SU ENDS-->
                             </div>

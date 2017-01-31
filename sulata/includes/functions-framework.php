@@ -430,7 +430,7 @@ if (!function_exists('checkLogin')) {
 //Check if logged in
     function checkLogin() {
         if ($_SESSION[SESSION_PREFIX . 'user__ID'] == '') {
-            $url = ADMIN_URL . 'login/';
+            $url = ADMIN_URL . 'login.php/';
             suPrintJs("parent.window.location.href='{$url}';");
             exit();
         }

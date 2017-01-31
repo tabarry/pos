@@ -85,8 +85,8 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>categories-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>categories/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>categories-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>categories.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -102,7 +102,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                 </div>
                                 <!--SU STARTS-->
 
-                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>categories-remote/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>categories-remote.php/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
 
                                     <div class="gallery clearfix">
                                         <div class="form-group">

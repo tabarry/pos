@@ -18,9 +18,6 @@ function suParse($str, $start, $end) {
     return $str2[0];
 }
 
-
-
-
 if ($do == 'add') {
     //Clear previos table
     $sql = "UPDATE sulata_videos SET video__dbState='Deleted'";
@@ -123,7 +120,7 @@ if ($do == 'add') {
         <form name="suForm" id="suForm" action="<?php echo ADMIN_URL; ?>inc-videos.php/add/"  method="post" target="remote">
             <ul id="sortable">
                 <?php
-                //Get already added video count
+//Get already added video count
                 $sql = "SELECT video__Title,video__Code FROM sulata_videos WHERE video__dbState='Live' ORDER BY video__Sequence";
                 $result = suQuery($sql);
                 while ($row = suFetch($result)) {

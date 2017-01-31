@@ -120,7 +120,7 @@ if ($do == "update") {
         /* POST UPDATE PLACE */
 
         if ($_POST['referrer'] == '') {
-            $_POST['referrer'] = ADMIN_URL . 'categories-cards/';
+            $_POST['referrer'] = ADMIN_URL . 'categories-cards.php/';
         }
         suPrintJs("
             parent.window.location.href='" . $_POST['referrer'] . "';

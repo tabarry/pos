@@ -9,7 +9,6 @@ checkLogin();
 $pageName = 'Start your synchronisation';
 $pageTitle = 'Start your synchronisation';
 $downloadAccess = TRUE;
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -85,80 +84,80 @@ $downloadAccess = TRUE;
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop green"></i> <?php echo $pageTitle; ?></h3>
                                 <p>&nbsp;</p>
-                                <form name="suAdvancedForm" id="suAdvancedForm" method="post" action="<?php echo ADMIN_URL?>sync.php">
-                                <fieldset style="border: 1px solid #eee;padding: 20px;">
-                                    <div class="form-group" style="margin-top: 10px;">
+                                <form name="suAdvancedForm" id="suAdvancedForm" method="post" action="<?php echo ADMIN_URL ?>sync.php">
+                                    <fieldset style="border: 1px solid #eee;padding: 20px;">
+                                        <div class="form-group" style="margin-top: 10px;">
 
-                                        <div class="clearfix"></div>
-                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                            <label ><i class="fa fa-calendar blue"></i> Select date</label>
-                                            <input type="text" name="startDate" id="startDate" autocomplete="off" class="form-control dateBox" maxlength="" value="<?php echo $_GET['startDate'] ?>" /></div>
-
-
-
-                                    </div>
-
-                                    <script>
-                                        $(function() {
-                                            $('#startDate').datepicker({
-                                                changeMonth: true,
-                                                changeYear: true
-                                            });
-                                            $('#startDate').datepicker('option', 'yearRange', 'c-100:c+10');
-                                            $('#startDate').datepicker('option', 'dateFormat', '<?php echo DATE_FORMAT; ?>');
-<?php if ($_GET['startDate'] != '') { ?>
-                                                $('#startDate').datepicker('setDate', '<?php echo $_GET['startDate'] ?>');
-<?php } ?>
-                                        });
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                                <label ><i class="fa fa-calendar blue"></i> Select date</label>
+                                                <input type="text" name="startDate" id="startDate" autocomplete="off" class="form-control dateBox" maxlength="" value="<?php echo $_GET['startDate'] ?>" /></div>
 
 
-                                    </script>
-                                    <div class="clearfix"></div>
-                                    <div class="form-group" style="margin-top: 10px;">
-                                        <div class="col-xs-5 col-sm-2 col-md-4 col-lg-4">
-                                            <input id="Submit_advance" type="submit" value="Start" name="Submit_advance" class="btn btn-primary pull-right">
+
                                         </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </fieldset>
-                            </form>
+
+                                        <script>
+                                            $(function() {
+                                                $('#startDate').datepicker({
+                                                    changeMonth: true,
+                                                    changeYear: true
+                                                });
+                                                $('#startDate').datepicker('option', 'yearRange', 'c-100:c+10');
+                                                $('#startDate').datepicker('option', 'dateFormat', '<?php echo DATE_FORMAT; ?>');
+<?php if ($_GET['startDate'] != '') { ?>
+                                                    $('#startDate').datepicker('setDate', '<?php echo $_GET['startDate'] ?>');
+<?php } ?>
+                                            });
+
+
+                                        </script>
+                                        <div class="clearfix"></div>
+                                        <div class="form-group" style="margin-top: 10px;">
+                                            <div class="col-xs-5 col-sm-2 col-md-4 col-lg-4">
+                                                <input id="Submit_advance" type="submit" value="Start" name="Submit_advance" class="btn btn-primary pull-right">
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </fieldset>
+                                </form>
 
                                 <div class="clearfix"></div>
                             </div>
 
 
-                        <!-- TABLE -->
+                            <!-- TABLE -->
 
 
 
-                        <!-- /TABLE -->
-<?php
+                            <!-- /TABLE -->
+                            <?php
 //                                $sqlP = "SELECT COUNT(order__ID) AS totalRecs FROM FROM sulata_order_details INNER JOIN sulata_products ON product__ID = orderdet__Product INNER JOIN sulata_orders ON order__ID = orderdet__Order WHERE order__Status = 'Received' $where";
 //                                suPaginate($sqlP);
-?>
-                        <?php if ($downloadAccess2 == TRUE && $numRows > 0) { ?>
-                            <p>&nbsp;</p>
-                            <p><a target="remote" href="<?php echo $_SERVER['PHP_SELF']; ?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download</a></p>
-                            <p>&nbsp;</p>
-                            <div class="clearfix"></div>
-<?php } ?>
+                            ?>
+                            <?php if ($downloadAccess2 == TRUE && $numRows > 0) { ?>
+                                <p>&nbsp;</p>
+                                <p><a target="remote" href="<?php echo $_SERVER['PHP_SELF']; ?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download</a></p>
+                                <p>&nbsp;</p>
+                                <div class="clearfix"></div>
+                            <?php } ?>
 
 
-                        <!--SU ENDS-->
+                            <!--SU ENDS-->
+                        </div>
                     </div>
+                    <?php include('inc-site-footer.php'); ?>
                 </div>
-<?php include('inc-site-footer.php'); ?>
             </div>
+
         </div>
 
+        <!-- Mainbar ends -->
+
+        <div class="clearfix"></div>
     </div>
-
-    <!-- Mainbar ends -->
-
-    <div class="clearfix"></div>
-</div>
-<?php include('inc-footer.php'); ?>
-<?php suIframe(); ?>
+    <?php include('inc-footer.php'); ?>
+    <?php suIframe(); ?>
 </body>
 <!--PRETTY PHOTO-->
 <?php include('inc-pretty-photo.php'); ?>

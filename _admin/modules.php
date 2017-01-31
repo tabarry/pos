@@ -16,9 +16,9 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
     <head>
         <?php include('inc-head.php'); ?>
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 //Keep session alive
-                $(function () {
+                $(function() {
                     window.setInterval("suStayAlive('<?php echo PING_URL; ?>')", 300000);
                 });
                 //Disable submit button
@@ -144,7 +144,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
 
                                                 //Table view or card view
                                                 if ($getSettings['table_or_card'] == 'card') {
-                                                    $file = str_replace('.php', '-cards/', $file);
+                                                    $file = str_replace('.php', '-cards.php/', $file);
                                                 }
 
                                                 $fileNameShow = str_replace('_', ' ', $fileName);

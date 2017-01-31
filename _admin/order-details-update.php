@@ -9,8 +9,8 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
     suExit(INVALID_ACCESS);
 }
 $id = suSegment(1);
-if(!is_numeric($id)){
-	suExit(INVALID_RECORD);
+if (!is_numeric($id)) {
+    suExit(INVALID_RECORD);
 }
 $sql = "SELECT orderdet__ID,orderdet__Order,orderdet__Product,orderdet__Code,orderdet__Name,orderdet__Price,orderdet__Quantity FROM sulata_order_details WHERE orderdet__dbState='Live' AND orderdet__ID='" . $id . "'";
 $result = suQuery($sql);
@@ -18,9 +18,10 @@ if (suNumRows($result) == 0) {
     suExit(INVALID_RECORD);
 }
 $row = suFetch($result);
-suFree($result);    
+suFree($result);
 
-$pageName='Update Order Details';$pageTitle='Update Order Details';
+$pageName = 'Update Order Details';
+$pageTitle = 'Update Order Details';
 ?>
 <!DOCTYPE html>
 <html>
@@ -96,8 +97,8 @@ $pageName='Update Order Details';$pageTitle='Update Order Details';
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>order-details-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>order-details/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>order-details-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>order-details.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -112,66 +113,66 @@ $pageName='Update Order Details';$pageTitle='Update Order Details';
                                     <p></p>
                                 </div>
                                 <!--SU STARTS-->
-                                
-        <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>order-details-remote/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
-            <div class="gallery clearfix">
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
-<label><?php echo $dbs_sulata_order_details['orderdet__Code_req']; ?>Code:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_order_details['orderdet__Code_html5_type'] , 'name' => 'orderdet__Code', 'id' => 'orderdet__Code', 'autocomplete' => 'off', 'maxlength' =>  $dbs_sulata_order_details['orderdet__Code_max']  , 'value'=>suUnstrip($row['orderdet__Code']),$dbs_sulata_order_details['orderdet__Code_html5_req'] => $dbs_sulata_order_details['orderdet__Code_html5_req'],'class'=>'form-control');
-                                echo suInput('input', $arg);
-                                ?>
-</div>
-</div>
 
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
-<label><?php echo $dbs_sulata_order_details['orderdet__Name_req']; ?>Name:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_order_details['orderdet__Name_html5_type'] , 'name' => 'orderdet__Name', 'id' => 'orderdet__Name', 'autocomplete' => 'off', 'maxlength' =>  $dbs_sulata_order_details['orderdet__Name_max']  , 'value'=>suUnstrip($row['orderdet__Name']),$dbs_sulata_order_details['orderdet__Name_html5_req'] => $dbs_sulata_order_details['orderdet__Name_html5_req'],'class'=>'form-control');
-                                echo suInput('input', $arg);
-                                ?>
-</div>
-</div>
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>order-details-remote.php/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
+                                    <div class="gallery clearfix">
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
+                                                <label><?php echo $dbs_sulata_order_details['orderdet__Code_req']; ?>Code:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_order_details['orderdet__Code_html5_type'], 'name' => 'orderdet__Code', 'id' => 'orderdet__Code', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_order_details['orderdet__Code_max'], 'value' => suUnstrip($row['orderdet__Code']), $dbs_sulata_order_details['orderdet__Code_html5_req'] => $dbs_sulata_order_details['orderdet__Code_html5_req'], 'class' => 'form-control');
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>
+                                        </div>
 
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">            
-<label><?php echo $dbs_sulata_order_details['orderdet__Price_req']; ?>Price:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_order_details['orderdet__Price_html5_type'], 'name' => 'orderdet__Price', 'id' => 'orderdet__Price', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_order_details['orderdet__Price_max']  , 'value'=>suUnstrip($row['orderdet__Price']),$dbs_sulata_order_details['orderdet__Price_html5_req'] => $dbs_sulata_order_details['orderdet__Price_html5_req'],'class'=>'form-control');
-                                echo suInput('input', $arg);
-                                ?>
-</div>    
-</div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
+                                                <label><?php echo $dbs_sulata_order_details['orderdet__Name_req']; ?>Name:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_order_details['orderdet__Name_html5_type'], 'name' => 'orderdet__Name', 'id' => 'orderdet__Name', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_order_details['orderdet__Name_max'], 'value' => suUnstrip($row['orderdet__Name']), $dbs_sulata_order_details['orderdet__Name_html5_req'] => $dbs_sulata_order_details['orderdet__Name_html5_req'], 'class' => 'form-control');
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>
+                                        </div>
 
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">            
-<label><?php echo $dbs_sulata_order_details['orderdet__Quantity_req']; ?>Quantity:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_order_details['orderdet__Quantity_html5_type'], 'name' => 'orderdet__Quantity', 'id' => 'orderdet__Quantity', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_order_details['orderdet__Quantity_max']  , 'value'=>suUnstrip($row['orderdet__Quantity']),$dbs_sulata_order_details['orderdet__Quantity_html5_req'] => $dbs_sulata_order_details['orderdet__Quantity_html5_req'],'class'=>'form-control');
-                                echo suInput('input', $arg);
-                                ?>
-</div>    
-</div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">            
+                                                <label><?php echo $dbs_sulata_order_details['orderdet__Price_req']; ?>Price:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_order_details['orderdet__Price_html5_type'], 'name' => 'orderdet__Price', 'id' => 'orderdet__Price', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_order_details['orderdet__Price_max'], 'value' => suUnstrip($row['orderdet__Price']), $dbs_sulata_order_details['orderdet__Price_html5_req'] => $dbs_sulata_order_details['orderdet__Price_html5_req'], 'class' => 'form-control');
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>    
+                                        </div>
 
-        
-        <p>
-        <?php
-        $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
-        echo suInput('input', $arg);
-        ?>                              
-        </p>
-        <?php
-        //Referrer field
-        $arg = array('type' => 'hidden', 'name' => 'referrer', 'id' => 'referrer', 'value' => $_SERVER['HTTP_REFERER']);
-        echo suInput('input', $arg);                       
-        //Id field
-        $arg = array('type' => 'hidden', 'name' => 'orderdet__ID', 'id' => 'orderdet__ID', 'value' => $id);
-        echo suInput('input', $arg);
-        ?>
-        <p>&nbsp;</p>
-        </form>
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">            
+                                                <label><?php echo $dbs_sulata_order_details['orderdet__Quantity_req']; ?>Quantity:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_order_details['orderdet__Quantity_html5_type'], 'name' => 'orderdet__Quantity', 'id' => 'orderdet__Quantity', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_order_details['orderdet__Quantity_max'], 'value' => suUnstrip($row['orderdet__Quantity']), $dbs_sulata_order_details['orderdet__Quantity_html5_req'] => $dbs_sulata_order_details['orderdet__Quantity_html5_req'], 'class' => 'form-control');
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>    
+                                        </div>
+
+
+                                        <p>
+                                            <?php
+                                            $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
+                                            echo suInput('input', $arg);
+                                            ?>                              
+                                        </p>
+                                        <?php
+                                        //Referrer field
+                                        $arg = array('type' => 'hidden', 'name' => 'referrer', 'id' => 'referrer', 'value' => $_SERVER['HTTP_REFERER']);
+                                        echo suInput('input', $arg);
+                                        //Id field
+                                        $arg = array('type' => 'hidden', 'name' => 'orderdet__ID', 'id' => 'orderdet__ID', 'value' => $id);
+                                        echo suInput('input', $arg);
+                                        ?>
+                                        <p>&nbsp;</p>
+                                </form>
 
                                 <!--SU ENDS-->
                             </div>

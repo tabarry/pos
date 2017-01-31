@@ -8,7 +8,7 @@ include('../sulata/includes/db-structure.php');
 checkLogin();
 
 //Validation array
-$validateAsArray = array('user__Name_validateas' => 'required', 'user__Phone_validateas' => '', 'user__Email_validateas' => 'email', 'user__Password_validateas' => 'password', 'user__Status_validateas' => 'enum','user__Type_validateas' => 'enum', 'user__Picture_validateas' => 'image',);
+$validateAsArray = array('user__Name_validateas' => 'required', 'user__Phone_validateas' => '', 'user__Email_validateas' => 'email', 'user__Password_validateas' => 'password', 'user__Status_validateas' => 'enum', 'user__Type_validateas' => 'enum', 'user__Picture_validateas' => 'image',);
 //---------
 //Check to stop page opening outside iframe
 $do = suSegment(1);
@@ -187,7 +187,7 @@ if ($do == "update") {
 
         /* POST UPDATE PLACE */
         if ($_POST['referrer'] == '') {
-            $_POST['referrer'] = ADMIN_URL . 'users-cards/';
+            $_POST['referrer'] = ADMIN_URL . 'users-cards.php/';
         }
         suPrintJs("
             parent.window.location.href='" . $_POST['referrer'] . "';

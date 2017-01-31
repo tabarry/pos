@@ -1,14 +1,13 @@
 <?php
-
 include('../sulata/includes/config.php');
 include('../sulata/includes/functions.php');
 include('../sulata/includes/connection.php');
 include('../sulata/includes/get-settings.php');
 include('../sulata/includes/db-structure.php');
 checkLogin();
-  if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
-      suExit(INVALID_ACCESS);
-  }
+if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
+    suExit(INVALID_ACCESS);
+}
 $sql = "SELECT user__ID,user__Name,user__Phone,user__Email,user__Status FROM sulata_users WHERE user__dbState='Live'";
 //Download CSV
 if (suSegment(1) == 'stream-csv' && $downloadAccessCSV == TRUE) {
@@ -101,7 +100,7 @@ $pageTitle = 'Manage Users';
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-table red"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>pages-cards/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>pages-cards.php/"><i class="fa fa-th-large"></i></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -132,7 +131,7 @@ $pageTitle = 'Manage Users';
                                 </form>
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>users-add/" class="btn btn-black">Add new..</a></div>
+                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>users-add.php/" class="btn btn-black">Add new..</a></div>
                                 <?php } ?>
                                 <?php
                                 $fieldsArray = array('user__Name', 'user__Phone', 'user__Email', 'user__Status');
@@ -207,11 +206,11 @@ $pageTitle = 'Manage Users';
                                                 <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                     <td style="text-align: center;">
                                                         <?php if ($editAccess == TRUE) { ?>
-                                                            <a href="<?php echo ADMIN_URL; ?>users-update/<?php echo $row['user__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
+                                                            <a href="<?php echo ADMIN_URL; ?>users-update.php/<?php echo $row['user__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
                                                         <?php } ?>
                                                         <?php if ($deleteAccess == TRUE) { ?>
                                                             <?php if ($row['user__ID'] != $_SESSION[SESSION_PREFIX . 'user__ID']) { ?>
-                                                                <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>users-remote/delete/<?php echo $row['user__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
+                                                                <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>users-remote.php/delete/<?php echo $row['user__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
                                                             <?php } ?>
 
                                                         <?php } ?>
@@ -229,13 +228,13 @@ $pageTitle = 'Manage Users';
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>users/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>users.php/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>users/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>users.php/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

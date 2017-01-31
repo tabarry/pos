@@ -37,7 +37,7 @@ $pageTitle = 'Update Products';
                 suToggleButton(1);
             });
         </script> 
-             <script type="text/javascript">
+        <script type="text/javascript">
             function doAutocomplete(arg) {
 
                 $(arg).autocomplete({
@@ -108,8 +108,8 @@ $pageTitle = 'Update Products';
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>products-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>products/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>products-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>products.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -125,13 +125,13 @@ $pageTitle = 'Update Products';
                                 </div>
                                 <!--SU STARTS-->
 
-                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>products-remote/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" enctype="multipart/form-data">
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>products-remote.php/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" enctype="multipart/form-data">
                                     <div class="gallery clearfix">
                                         <div class="form-group">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">        
                                                 <label><?php echo $dbs_sulata_products['product__Category_req']; ?>Category:
                                                     <?php if ($addAccess == 'true') { ?>    
-                                                        <a title="Add new record.." rel="prettyPhoto[iframes]" href="<?php echo ADMIN_URL; ?>categories-add/?overlay=yes&iframe=true&width=50%&height=100%"><img border='0' src='<?php echo BASE_URL; ?>sulata/images/add-icon.png'/></a>
+                                                        <a title="Add new record.." rel="prettyPhoto[iframes]" href="<?php echo ADMIN_URL; ?>categories-add.php/?overlay=yes&iframe=true&width=50%&height=100%"><img border='0' src='<?php echo BASE_URL; ?>sulata/images/add-icon.png'/></a>
 
                                                         <a onclick="suReload('product__Category', '<?php echo ADMIN_URL; ?>', '<?php echo suCrypt('sulata_categories'); ?>', '<?php echo suCrypt('category__ID'); ?>', '<?php echo suCrypt('category__Category'); ?>');" href="javascript:;"><img border='0' src='<?php echo BASE_URL; ?>sulata/images/reload-icon.png'/></a>    
                                                     <?php } ?>    
@@ -186,7 +186,7 @@ $pageTitle = 'Update Products';
                                                 echo suInput('input', $arg);
                                                 ?>
                                             </div>
-                                   
+
                                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">                
                                                 <label><?php echo $dbs_sulata_products['product__Name_req']; ?>Name:</label>
                                                 <?php
@@ -204,7 +204,7 @@ $pageTitle = 'Update Products';
                                                 echo suInput('input', $arg);
                                                 ?>
                                             </div>    
-                                   
+
                                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">            
                                                 <label><?php echo $dbs_sulata_products['product__Price_req']; ?>Price<sup><?php echo $getSettings['site_currency']; ?></sup>:</label>
                                                 <?php
@@ -241,12 +241,12 @@ $pageTitle = 'Update Products';
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                               Material
+                                                                Material
                                                             </th>
                                                             <th>
                                                                 Unit
                                                             </th>
-                                                           
+
                                                             <th>
                                                                 Quantity
                                                             </th>
@@ -257,53 +257,54 @@ $pageTitle = 'Update Products';
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php 
-                                                        $sqlRawMaterial = "SELECT rawmaterial__ID, rawmaterial__Material, rawmaterial__Unit,promaterial__Quantity FROM sulata_product_material INNER JOIN sulata_raw_materials ON rawmaterial__ID = promaterial__Material WHERE rawmaterial__dbState = 'Live' AND promaterial__dbState = 'Live' AND promaterial__Product = '".  suSegment(1)."'";
+                                                        <?php
+                                                        $sqlRawMaterial = "SELECT rawmaterial__ID, rawmaterial__Material, rawmaterial__Unit,promaterial__Quantity FROM sulata_product_material INNER JOIN sulata_raw_materials ON rawmaterial__ID = promaterial__Material WHERE rawmaterial__dbState = 'Live' AND promaterial__dbState = 'Live' AND promaterial__Product = '" . suSegment(1) . "'";
                                                         $rsRawMaterial = suQuery($sqlRawMaterial);
-                                                        if(suNumRows($rsRawMaterial)>0){
-                                                            while($rowRawMaterial = suFetch($rsRawMaterial)){
-                                                        ?>
-                                                        
-                                                        <tr>
-                                                            <td width="20%">
-                                                                <input type="hidden" name="material__ID[]"  id="material__ID[]"  value="<?php echo $rowRawMaterial['rawmaterial__ID']?>" />
-                                                                <input type="text" autocomplete="off" name="material[]" id="material" onkeypress="return searchCode(event, this)" onkeyup="doAutocomplete(this)"  class="form-control" value="<?php echo suUnstrip($rowRawMaterial['rawmaterial__Material'])?>"/>
+                                                        if (suNumRows($rsRawMaterial) > 0) {
+                                                            while ($rowRawMaterial = suFetch($rsRawMaterial)) {
+                                                                ?>
 
-                                                            </td>
-                                                            <td width="20%">
-                                                                <input type="text" autocomplete="off" name="unit[]" id="unit[]" readonly="readonly" class="form-control" value="<?php echo suUnstrip($rowRawMaterial['rawmaterial__Unit'])?>"/>
-                                                            </td>
-                                                           
-                                                            <td width="10%">
-                                                                <input type="text" autocomplete="off" name="qty[]"  value="<?php echo $rowRawMaterial['promaterial__Quantity']?>"   class="form-control "/>
-                                                            </td >
+                                                                <tr>
+                                                                    <td width="20%">
+                                                                        <input type="hidden" name="material__ID[]"  id="material__ID[]"  value="<?php echo $rowRawMaterial['rawmaterial__ID'] ?>" />
+                                                                        <input type="text" autocomplete="off" name="material[]" id="material" onkeypress="return searchCode(event, this)" onkeyup="doAutocomplete(this)"  class="form-control" value="<?php echo suUnstrip($rowRawMaterial['rawmaterial__Material']) ?>"/>
 
-                                                            <td width="10%" align="center">
-                                                                 <a href="javascript:;" onclick="delRow(this);"><i class="fa fa-close red"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <?php 
+                                                                    </td>
+                                                                    <td width="20%">
+                                                                        <input type="text" autocomplete="off" name="unit[]" id="unit[]" readonly="readonly" class="form-control" value="<?php echo suUnstrip($rowRawMaterial['rawmaterial__Unit']) ?>"/>
+                                                                    </td>
+
+                                                                    <td width="10%">
+                                                                        <input type="text" autocomplete="off" name="qty[]"  value="<?php echo $rowRawMaterial['promaterial__Quantity'] ?>"   class="form-control "/>
+                                                                    </td >
+
+                                                                    <td width="10%" align="center">
+                                                                        <a href="javascript:;" onclick="delRow(this);"><i class="fa fa-close red"></i></a>
+                                                                    </td>
+                                                                </tr>
+                                                                <?php
                                                             }
-                                                            }else{?>
-                                                         <tr>
-                                                            <td width="20%">
-                                                                <input type="hidden" name="material__ID[]"  id="material__ID[]"  value="" />
-                                                                <input type="text" autocomplete="off" name="material[]" id="material" onkeypress="return searchCode(event, this)" onkeyup="doAutocomplete(this)"  class="form-control"/>
+                                                        } else {
+                                                            ?>
+                                                            <tr>
+                                                                <td width="20%">
+                                                                    <input type="hidden" name="material__ID[]"  id="material__ID[]"  value="" />
+                                                                    <input type="text" autocomplete="off" name="material[]" id="material" onkeypress="return searchCode(event, this)" onkeyup="doAutocomplete(this)"  class="form-control"/>
 
-                                                            </td>
-                                                            <td width="20%">
-                                                                <input type="text" autocomplete="off" name="unit[]" id="unit[]" readonly="readonly" class="form-control"/>
-                                                            </td>
-                                                           
-                                                            <td width="10%">
-                                                                <input type="text" autocomplete="off" name="qty[]"  value="1"   class="form-control "/>
-                                                            </td >
+                                                                </td>
+                                                                <td width="20%">
+                                                                    <input type="text" autocomplete="off" name="unit[]" id="unit[]" readonly="readonly" class="form-control"/>
+                                                                </td>
 
-                                                            <td width="10%" align="center">
-                                                                &nbsp;
-                                                            </td>
-                                                        </tr>
-                                                        <?php }?>
+                                                                <td width="10%">
+                                                                    <input type="text" autocomplete="off" name="qty[]"  value="1"   class="form-control "/>
+                                                                </td >
+
+                                                                <td width="10%" align="center">
+                                                                    &nbsp;
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?>
                                                     </tbody>
                                                 </table>
                                                 <div id="insertBefore"></div>
@@ -344,7 +345,7 @@ $pageTitle = 'Update Products';
                                                 <td width="20%">
                                                     <input type="text" autocomplete="off" name="unit[]" id="unit[]" readonly="readonly" class="form-control"/>
                                                 </td>
-                                                
+
                                                 <td width="10%">
                                                     <input type="text" autocomplete="off" name="qty[]"  value="1"  class="form-control"   />
                                                 </td >
@@ -356,7 +357,7 @@ $pageTitle = 'Update Products';
                                     </table>
 
                                 </form>
-            <?php
+                                <?php
                                 $sql_product = "SELECT rawmaterial__Unit,rawmaterial__Material,rawmaterial__ID FROM sulata_raw_materials WHERE rawmaterial__dbState = 'Live' ";
                                 $rs_product = suQuery($sql_product);
                                 while ($row_product = suFetch($rs_product)) {
@@ -414,20 +415,20 @@ $pageTitle = 'Update Products';
                                                 // look for the entry with a matching `code` value
                                                 if (obj[i].serial.toLowerCase() == str.value.toLowerCase()) {
 
-                                                   
+
                                                     //alert(x);
                                                     //Get and set item
                                                     id = findPrev(str, 1);
                                                     id.val(obj[i].id);
                                                     var y = id.val();
                                                     //alert(y);
-                                                             //alert(y);
+                                                    //alert(y);
                                                     var myarr = document.getElementsByName('material__ID[]');
-                                                    var numberofElements = myarr.length-3;
+                                                    var numberofElements = myarr.length - 3;
                                                     //alert(numberofElements);
                                                     for (var j = 0; j <= numberofElements; j++) {
                                                         var x = document.getElementsByName("material__ID[]")[j].value;
-                                                      
+
                                                         //alert(x);
                                                         //alert(z);
                                                         if (x == y) {
@@ -447,7 +448,7 @@ $pageTitle = 'Update Products';
                                                     //Get and set item
                                                     code = findNext(str, 1);
                                                     code.val(obj[i].unit);
-                                            
+
                                                     qty = findNext(str, 2);
                                                     qty.val('1');
 
@@ -456,7 +457,7 @@ $pageTitle = 'Update Products';
                                                 } else {
                                                     code = findNext(str, 1);
                                                     code.val('');
-                                                   
+
                                                     qty = findNext(str, 2);
                                                     qty.val('0');
 

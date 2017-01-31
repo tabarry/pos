@@ -15,9 +15,9 @@ checkLogin();
         <?php include('inc-head.php'); ?>
         <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 //Keep session alive
-                $(function () {
+                $(function() {
                     window.setInterval("suStayAlive('<?php echo PING_URL; ?>')", 300000);
                 });
                 //Disable submit button
@@ -102,7 +102,7 @@ checkLogin();
                                     </div>
 
                                     <script>
-                                        $(function () {
+                                        $(function() {
                                             $('#startDate').datepicker({
                                                 changeMonth: true,
                                                 changeYear: true
@@ -113,7 +113,7 @@ checkLogin();
                                                 $('#startDate').datepicker('setDate', '<?php echo $_GET['startDate'] ?>');
 <?php } ?>
                                         });
-                                        $(function () {
+                                        $(function() {
                                             $('#endDate').datepicker({
                                                 changeMonth: true,
                                                 changeYear: true
@@ -136,7 +136,7 @@ checkLogin();
                                 </fieldset>
                                 <div class="clearfix"></div>
                             </form>
-                            <a class="underline pull-right" href="<?php echo ADMIN_URL ?>graphs/">Clear Search</a>
+                            <a class="underline pull-right" href="<?php echo ADMIN_URL ?>graphs.php/">Clear Search</a>
                             <div class="clearfix"></div>
 
 
@@ -189,7 +189,7 @@ checkLogin();
         $dataPoint2 = substr($dataPoint2, 0, -1);
         ?>
         <script type="text/javascript">
-            window.onload = function () {
+            window.onload = function() {
                 var myNewChart = new CanvasJS.Chart("chartContainer",
                         {
                             title: {

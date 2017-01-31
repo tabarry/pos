@@ -6,9 +6,9 @@ include('../sulata/includes/get-settings.php');
 include('../sulata/includes/db-structure.php');
 checkLogin();
 $do = suSegment(1);
-if($do=='print-invoice'){
-     suPrintJS("window.open('" . ADMIN_URL . "pos-remote/print-invoice/" . suSegment(2) . "/" . suSegment(3) . "/', 'remote');");
-//     suPrintJS("remote.window.location.href='" . ADMIN_URL . "pos-remote/print-invoice/" . suStrip($_POST['order__UID']) . "/" . session_id() . "/'");
+if ($do == 'print-invoice') {
+    suPrintJS("window.open('" . ADMIN_URL . "pos-remote.php/print-invoice/" . suSegment(2) . "/" . suSegment(3) . "/', 'remote');");
+//     suPrintJS("remote.window.location.href='" . ADMIN_URL . "pos-remote.php/print-invoice/" . suStrip($_POST['order__UID']) . "/" . session_id() . "/'");
 }
 $pageName = 'POS';
 $pageTitle = 'Point of Sale';
@@ -34,9 +34,9 @@ if ($_GET['u'] == '') {
     <head>
         <?php include('inc-head.php'); ?>
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 //Keep session alive
-                $(function () {
+                $(function() {
                     window.setInterval("suStayAlive('<?php echo PING_URL; ?>')", 300000);
                 });
                 //Disable submit button
@@ -174,7 +174,7 @@ if ($_GET['u'] == '') {
 
                             <!-- CARDS START -->
                             <?php
-                            $sql1 = "SELECT category__ID,category__Category FROM sulata_menu_details INNER JOIN sulata_products ON product__ID = menudetail__Product INNER JOIN sulata_categories ON category__ID = product__Category WHERE category__dbState='Live' AND product__dbState = 'Live' AND menudetail__dbState = 'Live' AND menudetail__Menu = '".$getSettings['truck_menu']."' GROUP BY category__ID ORDER BY category__Category";
+                            $sql1 = "SELECT category__ID,category__Category FROM sulata_menu_details INNER JOIN sulata_products ON product__ID = menudetail__Product INNER JOIN sulata_categories ON category__ID = product__Category WHERE category__dbState='Live' AND product__dbState = 'Live' AND menudetail__dbState = 'Live' AND menudetail__Menu = '" . $getSettings['truck_menu'] . "' GROUP BY category__ID ORDER BY category__Category";
                             $result1 = suQuery($sql1);
                             while ($row1 = suFetch($result1)) {
                                 ?>
@@ -186,14 +186,14 @@ if ($_GET['u'] == '') {
                                     $where .= " AND (product__Name LIKE '%" . suStrip($_GET['q']) . "%' OR product__Code LIKE '%" . suStrip($_GET['q']) . "%' )";
                                 }
 
-                                $sql = "SELECT product__ID,product__Category,product__Picture,product__Code,product__Name,menudetail__Product_Price,product__Status FROM sulata_menu_details INNER JOIN sulata_products ON product__ID = menudetail__Product WHERE product__dbState='Live' AND product__Category='" . $row1['category__ID'] . "' AND menudetail__dbState = 'Live' AND menudetail__Menu = '".$getSettings['truck_menu']."' $where";
+                                $sql = "SELECT product__ID,product__Category,product__Picture,product__Code,product__Name,menudetail__Product_Price,product__Status FROM sulata_menu_details INNER JOIN sulata_products ON product__ID = menudetail__Product WHERE product__dbState='Live' AND product__Category='" . $row1['category__ID'] . "' AND menudetail__dbState = 'Live' AND menudetail__Menu = '" . $getSettings['truck_menu'] . "' $where";
                                 $result = suQuery($sql);
                                 while ($row = suFetch($result)) {
                                     ?>
 
 
                                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="card_<?php echo $row['product__ID']; ?>">
-                                        <form name="suForm<?php echo $row['product__ID']; ?>" id="suForm<?php echo $row['product__ID']; ?>" target="remote" action="<?php echo ADMIN_URL; ?>pos-remote/add/" method="post">
+                                        <form name="suForm<?php echo $row['product__ID']; ?>" id="suForm<?php echo $row['product__ID']; ?>" target="remote" action="<?php echo ADMIN_URL; ?>pos-remote.php/add/" method="post">
                                             <div class="card">
 
                                                 <h1>
@@ -201,7 +201,7 @@ if ($_GET['u'] == '') {
                                                     if (!isset($row['product__Name']) || ($row['product__Name'] == '')) {
                                                         echo "-";
                                                     } else {
-                                                        echo suSubstr(suUnstrip($row['product__Name']),100);
+                                                        echo suSubstr(suUnstrip($row['product__Name']), 100);
                                                     }
                                                     ?>
 
@@ -211,7 +211,7 @@ if ($_GET['u'] == '') {
                                                     if (!isset($row['product__Code']) || ($row['product__Code'] == '')) {
                                                         echo "-";
                                                     } else {
-                                                        echo suSubstr(suUnstrip($row['product__Code']),100);
+                                                        echo suSubstr(suUnstrip($row['product__Code']), 100);
                                                     }
                                                     ?>
                                                 </label>
@@ -306,36 +306,36 @@ if ($_GET['u'] == '') {
     <script src="<?php echo BASE_URL; ?>/sulata/js/highlight.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-                                                            $(function () {
-                                                                $('#q').bind('keyup change', function (ev) {
-                                                                    // pull in the new value
-                                                                    var searchTerm = $(this).val();
-                                                                    //Show clear search link
-                                                                    $('#searchDiv').show();
-                                                                    // remove any old highlighted terms
-                                                                    $('body').removeHighlight();
+                                                $(function() {
+                                                    $('#q').bind('keyup change', function(ev) {
+                                                        // pull in the new value
+                                                        var searchTerm = $(this).val();
+                                                        //Show clear search link
+                                                        $('#searchDiv').show();
+                                                        // remove any old highlighted terms
+                                                        $('body').removeHighlight();
 
-                                                                    // disable highlighting if empty
-                                                                    if (searchTerm) {
-                                                                        // highlight the new term
-                                                                        $('body').highlight(searchTerm);
-                                                                    }
-                                                                });
-                                                            });
+                                                        // disable highlighting if empty
+                                                        if (searchTerm) {
+                                                            // highlight the new term
+                                                            $('body').highlight(searchTerm);
+                                                        }
+                                                    });
+                                                });
 
-                                                            function clearSearch() {
-                                                                $('#q').val('');
-                                                                // remove any old highlighted terms
-                                                                $('body').removeHighlight();
-                                                                //hide clear search link
-                                                                $('#searchDiv').hide();
+                                                function clearSearch() {
+                                                    $('#q').val('');
+                                                    // remove any old highlighted terms
+                                                    $('body').removeHighlight();
+                                                    //hide clear search link
+                                                    $('#searchDiv').hide();
 
-                                                            }
+                                                }
     </script>
     <?php suIframe(); ?>
     <?php
     if ($_GET['u'] != '') {
-        suPrintJs("remote.location.href='" . ADMIN_URL . "pos-remote/reload/" . $uid . "/'");
+        suPrintJs("remote.location.href='" . ADMIN_URL . "pos-remote.php/reload/" . $uid . "/'");
     }
     ?>
 </body>

@@ -1,13 +1,14 @@
 <link href="<?php echo ADMIN_URL; ?>css/cart.css" rel="stylesheet" type="text/css"/>
 <div id="cart">
-    <?php $sqlLocation = "SELECT location__Location FROM sulata_locations WHERE location__dbState = 'Live' AND location__ID = '".$getSettings['truck_location']."'";
-            $rsLocation = suQuery($sqlLocation);
-            $rowLocation = suFetch($rsLocation);
+    <?php
+    $sqlLocation = "SELECT location__Location FROM sulata_locations WHERE location__dbState = 'Live' AND location__ID = '" . $getSettings['truck_location'] . "'";
+    $rsLocation = suQuery($sqlLocation);
+    $rowLocation = suFetch($rsLocation);
     ?>
 
-    <form name="orderForm" id="orderForm" action="<?php echo ADMIN_URL; ?>pos-remote/order/" method="post" target="remote">
+    <form name="orderForm" id="orderForm" action="<?php echo ADMIN_URL; ?>pos-remote.php/order/" method="post" target="remote">
         <h4>THIS ORDER</h4>
-         <h4>Location: <?php echo $rowLocation['location__Location']?></h4>
+        <h4>Location: <?php echo $rowLocation['location__Location'] ?></h4>
         <input type="hidden" name="order__UID" value="<?php echo $uid; ?>"/>
         <input type="text" name="order__Customer_Name" id="order__Customer_Name" placeholder="Name" class="form-control caps" required="required" autocomplete="off"/>
         <input type="number" name="order__Mobile_Number" id="order__Mobile_Number" placeholder="Mobile" class="form-control caps" autocomplete="off"/>
@@ -92,7 +93,7 @@
 
         <p class="pull-right topSpacer5"><input type="submit" value="Confirm" class="btn btn-primary"/></p>
 
-        <p class="pull-right topSpacer5"><input type="button" value="Clear" onclick="location.href = '<?php echo ADMIN_URL ?>pos/';" class="btn btn-primary"/></p>
+        <p class="pull-right topSpacer5"><input type="button" value="Clear" onclick="location.href = '<?php echo ADMIN_URL ?>pos.php/';" class="btn btn-primary"/></p>
     </form>
     <?php
     $sql_product = "SELECT promotionalcode__Code,promotionalcode__Type,promotionalcode__Value FROM sulata_promotional_codes WHERE promotionalcode__Validity >= '" . date("Y-m-d") . "' AND promotionalcode__Active = 'Active'";
@@ -113,10 +114,10 @@
             }
             return stopSubmit(e);
         }
-            function cashReceived() {
+        function cashReceived() {
 
             document.getElementById("total_balance").value = document.getElementById("order__Cash_Recieved").value - document.getElementById("net_total").value;
-             return stopSubmit(e);
+            return stopSubmit(e);
 
         }
         function checkDiscount() {
@@ -181,7 +182,7 @@
                             radiobtn.checked = true;
                             document.getElementById("net_discount").value = obj[i].value;
 
-                         return checkDiscount();
+                            return checkDiscount();
 
 
 
@@ -189,7 +190,7 @@
                             radiobtn = document.getElementById("order__Discount_Type2");
                             radiobtn.checked = true;
                             document.getElementById("net_discount").value = obj[i].value;
-                           return checkDiscount();
+                            return checkDiscount();
 
 
 
@@ -199,9 +200,9 @@
 
 
                     } else {
-                       alert('Invalid code.');
+                        alert('Invalid code.');
                         document.getElementById("net_discount").value = "0";
-                           return checkDiscount();
+                        return checkDiscount();
 
 
                     }
@@ -213,10 +214,10 @@
             }
 
         }
-         function giveDiscount(e) {
-                return stopSubmit(e);
+        function giveDiscount(e) {
+            return stopSubmit(e);
 
-            }
+        }
 
     </script>
 

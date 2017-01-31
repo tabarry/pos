@@ -13,16 +13,16 @@ $validateAsArray = array('product__Category_validateas' => 'required', 'product_
 //Check to stop page opening outside iframe
 //Deliberately disabled for list and delete conditions
 $do = suSegment(1);
-if($do=='print-invoice'){
+if ($do == 'print-invoice') {
     $sql = "SELECT order__ID,order__ID as order_id,order__Number,DATE_FORMAT(order__Date,'%d-%b-%y %h:%i %p') AS orderDate,order__Customer_Name,order__Mobile_Number,order__Total_Amount,order__Discount,order__Discount_Type,order__Cash_Recieved,order__Notes,order__Promo_Code FROM sulata_orders WHERE order__UID='" . suSegment(2) . "' AND order__Session='" . suSegment(3) . "' ";
-    
-    suInvoiceToPDF($sql,$outputFileName);
+
+    suInvoiceToPDF($sql, $outputFileName);
     exit;
 }
-if($do=='print-invoice-kitchen'){
+if ($do == 'print-invoice-kitchen') {
     $sql = "SELECT order__ID,order__ID as order_id,order__Number,DATE_FORMAT(order__Date,'%d-%b-%y %h:%i %p') AS orderDate,order__Customer_Name,order__Mobile_Number,order__Total_Amount,order__Discount,order__Discount_Type,order__Cash_Recieved,order__Notes,order__Promo_Code FROM sulata_orders WHERE order__UID='" . suSegment(2) . "' AND order__Session='" . suSegment(3) . "' ";
-    
-    suKitchenInvoiceToPDF($sql,$outputFileName);
+
+    suKitchenInvoiceToPDF($sql, $outputFileName);
     exit;
 }
 if (($_GET["do"] != "check") && ($_GET["do"] != "autocomplete")) {
@@ -80,9 +80,9 @@ if ($do == "add") {
         $total = $total + $row['orderdet__Amount'];
         $tableContent .= "<tr>"
                 . "<td width=\"10%\">" . $cnt . ". </td>"
-                . "<td width=\"10%\"><a href=\"" . ADMIN_URL . "pos-remote/delete/" . $row['orderdet__ID'] . "/\" target=\"remote\"><i class=\"fa fa-trash color-Crimson\"></i></a></td>"
+                . "<td width=\"10%\"><a href=\"" . ADMIN_URL . "pos-remote.php/delete/" . $row['orderdet__ID'] . "/\" target=\"remote\"><i class=\"fa fa-trash color-Crimson\"></i></a></td>"
                 . "<td width=\"20%\">"
-                . " <form name=\"suForm_" . $row["orderdet__ID"] . "\" id=\"suForm_" . $row["orderdet__ID"] . "\" method=\"post\" target=\"remote\" action=\"" . ADMIN_URL . "pos-remote/update/\">"
+                . " <form name=\"suForm_" . $row["orderdet__ID"] . "\" id=\"suForm_" . $row["orderdet__ID"] . "\" method=\"post\" target=\"remote\" action=\"" . ADMIN_URL . "pos-remote.php/update/\">"
                 . "<input style=\"width:30px;\" type=\"hidden\" name=\"detailID\" value=\"" . $row['orderdet__ID'] . "\" />"
                 . "<input style=\"width:30px;\" type=\"number\" name=\"changeQuantity\" value=\"" . $row['orderdet__Quantity'] . "\" onkeyup=\"document.suForm_" . $row['orderdet__ID'] . ".submit();\" onchange=\"document.suForm_" . $row['orderdet__ID'] . ".submit();\" />"
                 . "</form>"
@@ -116,9 +116,9 @@ if ($do == 'update') {
         $total = $total + $row['orderdet__Amount'];
         $tableContent .= "<tr>"
                 . "<td width=\"10%\">" . $cnt . ". </td>"
-                . "<td width=\"10%\"><a href=\"" . ADMIN_URL . "pos-remote/delete/" . $row['orderdet__ID'] . "/\" target=\"remote\"><i class=\"fa fa-trash color-Crimson\"></i></a></td>"
+                . "<td width=\"10%\"><a href=\"" . ADMIN_URL . "pos-remote.php/delete/" . $row['orderdet__ID'] . "/\" target=\"remote\"><i class=\"fa fa-trash color-Crimson\"></i></a></td>"
                 . "<td width=\"20%\">"
-                . " <form name=\"suForm_" . $row["orderdet__ID"] . "\" id=\"suForm_" . $row["orderdet__ID"] . "\" method=\"post\" target=\"remote\" action=\"" . ADMIN_URL . "pos-remote/update/\">"
+                . " <form name=\"suForm_" . $row["orderdet__ID"] . "\" id=\"suForm_" . $row["orderdet__ID"] . "\" method=\"post\" target=\"remote\" action=\"" . ADMIN_URL . "pos-remote.php/update/\">"
                 . "<input style=\"width:30px;\" type=\"hidden\" name=\"detailID\" value=\"" . $row['orderdet__ID'] . "\" />"
                 . "<input style=\"width:30px;\" type=\"number\" name=\"changeQuantity\" value=\"" . $row['orderdet__Quantity'] . "\" onkeyup=\"document.suForm_" . $row['orderdet__ID'] . ".submit();\" onchange=\"document.suForm_" . $row['orderdet__ID'] . ".submit();\" />"
                 . "</form>"
@@ -161,9 +161,9 @@ if ($do == "delete") {
         $total = $total + $row['orderdet__Amount'];
         $tableContent .= "<tr>"
                 . "<td width=\"10%\">" . $cnt . ". </td>"
-                . "<td width=\"10%\"><a href=\"" . ADMIN_URL . "pos-remote/delete/" . $row['orderdet__ID'] . "/\" target=\"remote\"><i class=\"fa fa-trash color-Crimson\"></i></a></td>"
+                . "<td width=\"10%\"><a href=\"" . ADMIN_URL . "pos-remote.php/delete/" . $row['orderdet__ID'] . "/\" target=\"remote\"><i class=\"fa fa-trash color-Crimson\"></i></a></td>"
                 . "<td width=\"20%\">"
-                . " <form name=\"suForm_" . $row["orderdet__ID"] . "\" id=\"suForm_" . $row["orderdet__ID"] . "\" method=\"post\" target=\"remote\" action=\"" . ADMIN_URL . "pos-remote/update/\">"
+                . " <form name=\"suForm_" . $row["orderdet__ID"] . "\" id=\"suForm_" . $row["orderdet__ID"] . "\" method=\"post\" target=\"remote\" action=\"" . ADMIN_URL . "pos-remote.php/update/\">"
                 . "<input style=\"width:30px;\" type=\"hidden\" name=\"detailID\" value=\"" . $row['orderdet__ID'] . "\" />"
                 . "<input style=\"width:30px;\" type=\"number\" name=\"changeQuantity\" value=\"" . $row['orderdet__Quantity'] . "\" onkeyup=\"document.suForm_" . $row['orderdet__ID'] . ".submit();\" onchange=\"document.suForm_" . $row['orderdet__ID'] . ".submit();\" />"
                 . "</form>"
@@ -187,12 +187,12 @@ if ($do == "order") {
     $sql = "UPDATE sulata_orders SET order__Customer_Name = '" . strtoupper(suStrip($_POST['order__Customer_Name'])) . "', order__Mobile_Number='" . strtoupper(suStrip($phoneNumber)) . "',order__Status='Received',order__Date='" . date('Y-m-d H:i:s') . "',order__Promo_Code = '" . $_POST['order__Promo_Code'] . "',order__Total_Amount='" . round($_POST['totalAmount'], 2) . "',order__Discount='" . ($_POST['order__Discount']) . "',order__Discount_Type='" . ($_POST['order__Discount_Type']) . "',order__Cash_Recieved='" . $_POST['order__Cash_Recieved'] . "',order__Tax='" . $getSettings['sales_tax_rate'] . "',order__Tax_Value='" . round($taxValue) . "',order__Notes = '" . suStrip($_POST['order__Notes']) . "',order__Location = '" . $getSettings['truck_location'] . "', order__Last_Action_On ='" . date('Y-m-d H:i:s') . "',order__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "', order__dbState='Live' WHERE order__UID='" . suStrip($_POST['order__UID']) . "' AND order__Session='" . session_id() . "'";
 
     suQuery($sql);
-    
+
     $sqlUID = "SELECT order__ID FROM sulata_orders WHERE order__UID='" . suStrip($_POST['order__UID']) . "' AND order__Session='" . session_id() . "'";
     $rsUID = suQuery($sqlUID);
     $rowUID = suFetch($rsUID);
-    
-    $sql2 = "UPDATE sulata_order_details SET orderdet__Order_UID = '".suStrip($_POST['order__UID'])."' WHERE orderdet__Order = '".$rowUID['order__ID']."'";
+
+    $sql2 = "UPDATE sulata_order_details SET orderdet__Order_UID = '" . suStrip($_POST['order__UID']) . "' WHERE orderdet__Order = '" . $rowUID['order__ID'] . "'";
     suQuery($sql2);
 
 //    $sql = "SELECT order__ID,order__Number,DATE_FORMAT(order__Date,'%d-%b-%y %h:%i %p') AS orderDate,order__Customer_Name,order__Mobile_Number,order__Total_Amount,order__Discount,order__Discount_Type,order__Cash_Recieved,order__Notes,order__Promo_Code FROM sulata_orders WHERE order__UID='" . suStrip($_POST['order__UID']) . "' AND order__Session='" . session_id() . "' ";
@@ -310,16 +310,12 @@ if ($do == "order") {
 //
 //
 //';
-
-
     //echo $print_invoice_kitchen;
-$outputFileName = $row['order__Number'].'.pdf';
-  
-        
-        
-        suPrintJS("parent.window.location.href='" . ADMIN_URL . "pos/print-invoice/" . suStrip($_POST['order__UID']) . "/" . session_id() . "/'");
- 
-   
+    $outputFileName = $row['order__Number'] . '.pdf';
+
+
+
+    suPrintJS("parent.window.location.href='" . ADMIN_URL . "pos.php/print-invoice/" . suStrip($_POST['order__UID']) . "/" . session_id() . "/'");
 }
 
 
@@ -336,9 +332,9 @@ if ($do == "reload") {
         $total = $total + $row['orderdet__Amount'];
         $tableContent .= "<tr>"
                 . "<td width=\"10%\">" . $cnt . ". </td>"
-                . "<td width=\"10%\"><a href=\"" . ADMIN_URL . "pos-remote/delete/" . $row['orderdet__ID'] . "/\" target=\"remote\"><i class=\"fa fa-trash color-Crimson\"></i></a></td>"
+                . "<td width=\"10%\"><a href=\"" . ADMIN_URL . "pos-remote.php/delete/" . $row['orderdet__ID'] . "/\" target=\"remote\"><i class=\"fa fa-trash color-Crimson\"></i></a></td>"
                 . "<td width=\"20%\">"
-                . " <form name=\"suForm_" . $row["orderdet__ID"] . "\" id=\"suForm_" . $row["orderdet__ID"] . "\" method=\"post\" target=\"remote\" action=\"" . ADMIN_URL . "pos-remote/update/\">"
+                . " <form name=\"suForm_" . $row["orderdet__ID"] . "\" id=\"suForm_" . $row["orderdet__ID"] . "\" method=\"post\" target=\"remote\" action=\"" . ADMIN_URL . "pos-remote.php/update/\">"
                 . "<input style=\"width:30px;\" type=\"hidden\" name=\"detailID\" value=\"" . $row['orderdet__ID'] . "\" />"
                 . "<input style=\"width:30px;\" type=\"number\" name=\"changeQuantity\" value=\"" . $row['orderdet__Quantity'] . "\" onkeyup=\"document.suForm_" . $row['orderdet__ID'] . ".submit();\" onchange=\"document.suForm_" . $row['orderdet__ID'] . ".submit();\" />"
                 . "</form>"
@@ -442,13 +438,13 @@ window.print();
 
 
     suPrintJs("
-        parent.window.location.href='" . ADMIN_URL . "pos/';
+        parent.window.location.href='" . ADMIN_URL . "pos.php/';
     ");
 }
 
-if($do == 'customer-copy'){
-     $sql = "SELECT order__ID,order__Number,DATE_FORMAT(order__Date,'%d-%b-%y %h:%i %p') AS orderDate,order__Customer_Name,order__Mobile_Number,order__Total_Amount,order__Discount,order__Discount_Type,order__Cash_Recieved,order__Notes,order__Promo_Code FROM sulata_orders WHERE order__ID='" . suSegment(2) . "' ";
- 
+if ($do == 'customer-copy') {
+    $sql = "SELECT order__ID,order__Number,DATE_FORMAT(order__Date,'%d-%b-%y %h:%i %p') AS orderDate,order__Customer_Name,order__Mobile_Number,order__Total_Amount,order__Discount,order__Discount_Type,order__Cash_Recieved,order__Notes,order__Promo_Code FROM sulata_orders WHERE order__ID='" . suSegment(2) . "' ";
+
     $rs = suQuery($sql);
     $row = suFetch($rs);
 
@@ -486,10 +482,10 @@ if($do == 'customer-copy'){
 <p>
 <b>Order No.</b>: ' . $row['order__Number'] . '<br>
 Customer: ' . $row['order__Customer_Name'] . '<br>';
-    if($row['order__Mobile_Number']!=""){
-         $print_invoice.='Mobile: '.$row['order__Mobile_Number'].'<br>';
+    if ($row['order__Mobile_Number'] != "") {
+        $print_invoice.='Mobile: ' . $row['order__Mobile_Number'] . '<br>';
     }
-$print_invoice .='Date: ' . $row['orderDate'] . '<br>
+    $print_invoice .='Date: ' . $row['orderDate'] . '<br>
 </p>
 <p style="text-align:left">
 
@@ -507,7 +503,7 @@ $print_invoice .='Date: ' . $row['orderDate'] . '<br>
 
 ';
     }
-     $print_invoice.='
+    $print_invoice.='
 </p>
 <p style="text-align:left">
 Total: ' . number_format($row['order__Total_Amount'], 2) . '<br>
@@ -515,8 +511,8 @@ Total: ' . number_format($row['order__Total_Amount'], 2) . '<br>
     $balance = $row['order__Cash_Recieved'] - $row['order__Total_Amount'];
 
     if ($row['order__Discount'] > 0) {
-        if($row['order__Promo_Code']!=""){
-             $print_invoice.='
+        if ($row['order__Promo_Code'] != "") {
+            $print_invoice.='
             Promo Code: ' . number_format($row['order__Promo_Code'], 2) . '<br>';
         }
         $print_invoice.='
@@ -526,7 +522,7 @@ Net: ' . number_format($row['order__Total_Amount'] - $row['order__Discount'], 2)
 ';
         $balance = $row['order__Cash_Recieved'] - $row['order__Total_Amount'] - $row['order__Discount'];
     }
-    
+
     if ($row['order__Notes'] != "") {
         $print_invoice.='
 Instructions: <br>
@@ -534,8 +530,8 @@ Instructions: <br>
 ';
     }
     $print_invoice .='
-        Cash Received: '.  number_format($row['order__Cash_Recieved'],2).'<br>
-            Balance: '.number_format($balance,2).'
+        Cash Received: ' . number_format($row['order__Cash_Recieved'], 2) . '<br>
+            Balance: ' . number_format($balance, 2) . '
 </p>
 <p  style="text-align:left">
 Prices in ' . $getSettings['site_currency'] . '<br>
@@ -567,8 +563,8 @@ window.print();
 ';
     echo $print_invoice;
 }
-if($do=="kitchen-copy"){
-      $sql = "SELECT order__ID,order__Number,DATE_FORMAT(order__Date,'%d-%b-%y %h:%i %p') AS orderDate,order__Customer_Name,order__Total_Amount,order__Discount,order__Discount_Type,order__Cash_Recieved,order__Notes FROM sulata_orders WHERE order__ID='" . suSegment(2) . "'";
+if ($do == "kitchen-copy") {
+    $sql = "SELECT order__ID,order__Number,DATE_FORMAT(order__Date,'%d-%b-%y %h:%i %p') AS orderDate,order__Customer_Name,order__Total_Amount,order__Discount,order__Discount_Type,order__Cash_Recieved,order__Notes FROM sulata_orders WHERE order__ID='" . suSegment(2) . "'";
     $rs = suQuery($sql);
     $row = suFetch($rs);
 
@@ -651,7 +647,5 @@ window.print();
 ';
 
     echo $print_invoice_kitchen;
-
 }
-
 ?>

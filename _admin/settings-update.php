@@ -90,8 +90,8 @@ suFree($result);
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>settings-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>settings/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>settings-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>settings.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -106,7 +106,7 @@ suFree($result);
                                     <p></p>
                                 </div>
                                 <!--SU STARTS-->
-                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>settings-remote/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >			
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>settings-remote.php/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >			
                                     <div class="gallery clearfix">
                                         <div class="form-group">
                                             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">

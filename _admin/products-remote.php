@@ -21,7 +21,7 @@ if (($_GET["do"] != "check") && ($_GET["do"] != "autocomplete")) {
 
 //Add record
 if ($do == "add") {
-    
+
 //Check referrer
     suCheckRef();
 //Validate
@@ -76,20 +76,19 @@ if ($do == "add") {
             suResize($defaultWidth, $defaultHeight, $_FILES['product__Picture']['tmp_name'], ADMIN_UPLOAD_PATH . $uploadPath . $product__Picture);
         }
 
- for ($i = 0; $i <= sizeof($_POST['material__ID']) - 1; $i++) {
+        for ($i = 0; $i <= sizeof($_POST['material__ID']) - 1; $i++) {
             if ($_POST['material__ID'][$i] != '') {
-                
+
                 $promaterial__Material = $_POST['material__ID'][$i];
 
                 $promaterial__Quantity = $_POST['qty'][$i];
 
 
-                 $sql = "INSERT INTO sulata_product_material SET promaterial__Product = '" . $max_id . "',promaterial__Material='" . $promaterial__Material . "',promaterial__Quantity='" . $promaterial__Quantity . "',promaterial__Last_Action_On='" . date('Y-m-d H:i:s') . "',promaterial__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "',promaterial__dbState='Live'";
+                $sql = "INSERT INTO sulata_product_material SET promaterial__Product = '" . $max_id . "',promaterial__Material='" . $promaterial__Material . "',promaterial__Quantity='" . $promaterial__Quantity . "',promaterial__Last_Action_On='" . date('Y-m-d H:i:s') . "',promaterial__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "',promaterial__dbState='Live'";
                 suQuery($sql);
-              
             }
- }
-      
+        }
+
         /* POST INSERT PLACE */
 
         suPrintJs('
@@ -101,8 +100,8 @@ if ($do == "add") {
             parent.suForm.reset();
 
         ');
-          suPrintJs("
-            parent.window.location.href='" . ADMIN_URL . "products-add/';
+        suPrintJs("
+            parent.window.location.href='" . ADMIN_URL . "products-add.php/';
         ");
     }
 }
@@ -167,26 +166,25 @@ if ($do == "update") {
             @unlink(ADMIN_UPLOAD_PATH . $_POST['previous_product__Picture']);
             suResize($defaultWidth, $defaultHeight, $_FILES['product__Picture']['tmp_name'], ADMIN_UPLOAD_PATH . $uploadPath . $product__Picture);
         }
-        $sqlDelete = "DELETE FROM sulata_product_material WHERE promaterial__Product = '".$max_id."'";
+        $sqlDelete = "DELETE FROM sulata_product_material WHERE promaterial__Product = '" . $max_id . "'";
         suQuery($sqlDelete);
-         for ($i = 0; $i <= sizeof($_POST['material__ID']) - 1; $i++) {
+        for ($i = 0; $i <= sizeof($_POST['material__ID']) - 1; $i++) {
             if ($_POST['material__ID'][$i] != '') {
-                
+
                 $promaterial__Material = $_POST['material__ID'][$i];
 
                 $promaterial__Quantity = $_POST['qty'][$i];
 
 
-                 $sql = "INSERT INTO sulata_product_material SET promaterial__Product = '" . $max_id . "',promaterial__Material='" . $promaterial__Material . "',promaterial__Quantity='" . $promaterial__Quantity . "',promaterial__Last_Action_On='" . date('Y-m-d H:i:s') . "',promaterial__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "',promaterial__dbState='Live'";
+                $sql = "INSERT INTO sulata_product_material SET promaterial__Product = '" . $max_id . "',promaterial__Material='" . $promaterial__Material . "',promaterial__Quantity='" . $promaterial__Quantity . "',promaterial__Last_Action_On='" . date('Y-m-d H:i:s') . "',promaterial__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "',promaterial__dbState='Live'";
                 suQuery($sql);
-              
             }
- }
+        }
 
         /* POST UPDATE PLACE */
 
         if ($_POST['referrer'] == '') {
-            $_POST['referrer'] = ADMIN_URL . 'products-cards/';
+            $_POST['referrer'] = ADMIN_URL . 'products-cards.php/';
         }
         suPrintJs("
             parent.window.location.href='" . $_POST['referrer'] . "';

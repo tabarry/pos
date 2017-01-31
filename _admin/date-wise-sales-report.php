@@ -23,9 +23,9 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
     <head>
         <?php include('inc-head.php'); ?>
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 //Keep session alive
-                $(function () {
+                $(function() {
                     window.setInterval("suStayAlive('<?php echo PING_URL; ?>')", 300000);
                 });
                 //Disable submit button
@@ -108,7 +108,7 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
                                         </div>
 
                                         <script>
-                                            $(function () {
+                                            $(function() {
                                                 $('#startDate').datepicker({
                                                     changeMonth: true,
                                                     changeYear: true
@@ -119,7 +119,7 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
                                                     $('#startDate').datepicker('setDate', '<?php echo $_GET['startDate'] ?>');
 <?php } ?>
                                             });
-                                            $(function () {
+                                            $(function() {
                                                 $('#endDate').datepicker({
                                                     changeMonth: true,
                                                     changeYear: true
@@ -134,21 +134,22 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
                                         </script>
                                         <div class="clearfix"></div>
                                         <div class="col-lg-4">
-                                                <label>Search by Location:</label>
-                                        <select name="location" id="location" class="form-control">
-                                            <option value="">Select...</option>
-                                            <?php $sqlLocations = "SELECT location__ID,location__Location FROM sulata_locations WHERE location__dbState = 'Live'";
-                                            $rsLocations = suQuery($sqlLocations);
-                                            while($rowLocations = suFetch($rsLocations)){
-                                                if($_GET['location']==$rowLocations['location__ID']){
-                                                    $selected = "selected='selected'";
-                                                }else{
-                                                     $selected = "";
-                                                }
-                                            ?>
-                                            <option value="<?php echo $rowLocations['location__ID']?>" <?php echo $selected?>><?php echo suUnstrip($rowLocations['location__Location'])?></option>
-                                            <?php }?>
-                                        </select>
+                                            <label>Search by Location:</label>
+                                            <select name="location" id="location" class="form-control">
+                                                <option value="">Select...</option>
+                                                <?php
+                                                $sqlLocations = "SELECT location__ID,location__Location FROM sulata_locations WHERE location__dbState = 'Live'";
+                                                $rsLocations = suQuery($sqlLocations);
+                                                while ($rowLocations = suFetch($rsLocations)) {
+                                                    if ($_GET['location'] == $rowLocations['location__ID']) {
+                                                        $selected = "selected='selected'";
+                                                    } else {
+                                                        $selected = "";
+                                                    }
+                                                    ?>
+                                                    <option value="<?php echo $rowLocations['location__ID'] ?>" <?php echo $selected ?>><?php echo suUnstrip($rowLocations['location__Location']) ?></option>
+                                                <?php } ?>
+                                            </select>
                                         </div>
                                         <div class="clearfix"></div>
                                         <div class="form-group" style="margin-top: 10px;">
@@ -161,7 +162,7 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
                                 </form>
                                 <?php if ($_GET['startDate'] || $_GET['location']) { ?>
                                     <div class="lineSpacer clear"></div>
-                                    <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>date-wise-sales-report/">Clear search.</a></div>
+                                    <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>date-wise-sales-report.php/">Clear search.</a></div>
                                 </div>
                             <?php } ?>
                             <div class="clearfix"></div>

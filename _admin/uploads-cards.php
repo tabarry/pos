@@ -18,7 +18,7 @@ $sql = $sqlSelect . $sqlFrom;
 <!DOCTYPE html>
 <html>
     <head>
-<?php include('inc-head.php'); ?>
+        <?php include('inc-head.php'); ?>
         <script type="text/javascript">
             $(document).ready(function() {
                 //Keep session alive
@@ -37,19 +37,19 @@ $sql = $sqlSelect . $sqlFrom;
 
             <!-- Sidebar starts -->
 
-<?php include('inc-sidebar.php'); ?>
+            <?php include('inc-sidebar.php'); ?>
             <!-- Sidebar ends -->
 
             <!-- Mainbar starts -->
             <div class="mainbar">
-<?php include('inc-heading.php'); ?>
+                <?php include('inc-heading.php'); ?>
                 <!-- Mainbar head starts -->
                 <div class="main-head">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3 col-sm-4 col-xs-6">
                                 <!-- Bread crumbs -->
-<?php include('inc-breadcrumbs.php'); ?>
+                                <?php include('inc-breadcrumbs.php'); ?>
                             </div>
 
                             <div class="col-md-3 col-sm-4 col-xs-6">
@@ -69,7 +69,7 @@ $sql = $sqlSelect . $sqlFrom;
                             <div class="col-md-3 hidden-sm hidden-xs">
                                 <!-- Head user -->
 
-<?php include('inc-header.php'); ?>
+                                <?php include('inc-header.php'); ?>
                                 <div class="clearfix"></div>
                             </div>
                         </div>	
@@ -89,7 +89,7 @@ $sql = $sqlSelect . $sqlFrom;
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>uploads/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>uploads.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -114,18 +114,18 @@ $sql = $sqlSelect . $sqlFrom;
                                         <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
                                             <input id="Submit" type="submit" value="Search" name="Submit" class="btn btn-primary pull-right">
                                         </div>
-<?php if ($_GET['q']) { ?>
+                                        <?php if ($_GET['q']) { ?>
                                             <div class="lineSpacer clear"></div>
-                                            <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>uploads-cards/">Clear search.</a></div>
+                                            <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>uploads-cards.php/">Clear search.</a></div>
                                             </div>
-<?php } ?>
+                                        <?php } ?>
                                     </fieldset>
                                 </form>
 
 
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>uploads-add/" class="btn btn-black">Add new..</a></div>
+                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>uploads-add.php/" class="btn btn-black">Add new..</a></div>
                                 <?php } ?>
                                 <?php
                                 $fieldsArray = array('upload__Title', 'upload__Picture');
@@ -167,12 +167,12 @@ $sql = $sqlSelect . $sqlFrom;
                                                 <header>
                                                     <?php if ($editAccess == TRUE) { ?>
 
-                                                        <a href="<?php echo ADMIN_URL; ?>uploads-update/<?php echo $row['upload__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <a href="<?php echo ADMIN_URL; ?>uploads-update.php/<?php echo $row['upload__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                     <?php } ?>
 
                                                     <?php if ($deleteAccess == TRUE) { ?>
 
-                                                        <a onclick="return delById('card_<?php echo $row['upload__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>uploads-remote/delete/<?php echo $row['upload__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <a onclick="return delById('card_<?php echo $row['upload__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>uploads-remote.php/delete/<?php echo $row['upload__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
                                                     <?php } ?>
 
                                                 </header>
@@ -198,8 +198,8 @@ $sql = $sqlSelect . $sqlFrom;
                                             ?>
                                             <div class="imgThumb" style="background-image:url(<?php echo $defaultImage; ?>);"></div>
                                             <div>&nbsp;</div>
-                                            <input type="text" class="form-control" value="<?php echo BASE_URL;?>files/<?php echo suUnstrip($row['upload__Picture']);?>"/>
-                                                <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
+                                            <input type="text" class="form-control" value="<?php echo BASE_URL; ?>files/<?php echo suUnstrip($row['upload__Picture']); ?>"/>
+                                            <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                 <th style="width:10%">&nbsp;</th>
                                             <?php } ?>
 
@@ -220,13 +220,13 @@ $sql = $sqlSelect . $sqlFrom;
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>uploads/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>uploads.php/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>uploads/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>uploads.php/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

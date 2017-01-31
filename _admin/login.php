@@ -49,19 +49,19 @@ if ($_GET['do'] == 'login') {
         $sql = "UPDATE sulata_users SET user__IP='" . $_SESSION[SESSION_PREFIX . 'user__IP'] . "' WHERE user__ID='" . $_SESSION[SESSION_PREFIX . 'user__ID'] . "'";
         suQuery($sql);
         //Delete orphan records
-         $sql = "SELECT order__ID FROM sulata_orders WHERE order__Date >= CURRENT_DATE() - INTERVAL 2 DAY AND order__Status = 'Being Ordered'";
+        $sql = "SELECT order__ID FROM sulata_orders WHERE order__Date >= CURRENT_DATE() - INTERVAL 2 DAY AND order__Status = 'Being Ordered'";
         $rs = suQuery($sql);
-        if(suNumRows($rs)>0){
-        while($row = suFetch($rs)){
-            $sqlDelete = "DELETE FROM sulata_orders WHERE order__ID = '".$row['order__ID']."'";
-            suQuery($sqlDelete);
-            $sqlDeleteDetail = "DELETE FROM sulata_order_details WHERE orderdet__Order = '".$row['order__ID']."'";
-            suQuery($sqlDeleteDetail);
-        }suFree($rs);
+        if (suNumRows($rs) > 0) {
+            while ($row = suFetch($rs)) {
+                $sqlDelete = "DELETE FROM sulata_orders WHERE order__ID = '" . $row['order__ID'] . "'";
+                suQuery($sqlDelete);
+                $sqlDeleteDetail = "DELETE FROM sulata_order_details WHERE orderdet__Order = '" . $row['order__ID'] . "'";
+                suQuery($sqlDeleteDetail);
+            }suFree($rs);
         }
 //Redirect
-       
-        suPrintJS("parent.suRedirect('" . ADMIN_URL . "assign-locations/');");
+
+        suPrintJS("parent.suRedirect('" . ADMIN_URL . "assign-locations.php/');");
     } else {
         $vError = array();
 //Validate entire form in one go using the DB Structure
@@ -86,7 +86,7 @@ if ($_GET['do'] == 'logout') {
 
     session_unset();
 //Redirect
-    suPrintJS("top.suRedirect('" . ADMIN_URL . "login/');");
+    suPrintJS("top.suRedirect('" . ADMIN_URL . "login.php/');");
     exit();
 }
 /* retrieve */
@@ -105,7 +105,7 @@ if ($_GET['do'] == 'retrieve') {
         suMail(suUnstrip($row['user__Email']), $subject, $email, $getSettings['site_name'], $getSettings['site_email'], TRUE);
         suFree($result);
 //Redirect
-        suPrintJS("alert('" . LOST_PASSWORD_DATA_SENT . "');parent.suRedirect('" . ADMIN_URL . "login/');");
+        suPrintJS("alert('" . LOST_PASSWORD_DATA_SENT . "');parent.suRedirect('" . ADMIN_URL . "login.php/');");
     } else {
         $vError = array();
         $vError[] = NO_LOST_PASSWORD_DATA;
@@ -157,7 +157,7 @@ if ($_GET['do'] == 'retrieve') {
 
                         <!-- Login form -->
 
-                        <form action="<?php echo ADMIN_SUBMIT_URL; ?>login/?do=login" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >			
+                        <form action="<?php echo ADMIN_SUBMIT_URL; ?>login.php/?do=login" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >			
                             <div class="form-group">
                                 <?php
                                 if (isset($_COOKIE[SESSION_PREFIX . '_user__Remember']) && ($_COOKIE[SESSION_PREFIX . '_user__Remember'] != '')) {

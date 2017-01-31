@@ -36,7 +36,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
 <!DOCTYPE html>
 <html>
     <head>
-<?php include('inc-head.php'); ?>
+        <?php include('inc-head.php'); ?>
         <script type="text/javascript">
             $(document).ready(function() {
                 //Keep session alive
@@ -55,19 +55,19 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
 
             <!-- Sidebar starts -->
 
-<?php include('inc-sidebar.php'); ?>
+            <?php include('inc-sidebar.php'); ?>
             <!-- Sidebar ends -->
 
             <!-- Mainbar starts -->
             <div class="mainbar">
-<?php include('inc-heading.php'); ?>
+                <?php include('inc-heading.php'); ?>
                 <!-- Mainbar head starts -->
                 <div class="main-head">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-3 col-sm-4 col-xs-6">
                                 <!-- Bread crumbs -->
-<?php include('inc-breadcrumbs.php'); ?>
+                                <?php include('inc-breadcrumbs.php'); ?>
                             </div>
 
                             <div class="col-md-3 col-sm-4 col-xs-6">
@@ -87,7 +87,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                             <div class="col-md-3 hidden-sm hidden-xs">
                                 <!-- Head user -->
 
-<?php include('inc-header.php'); ?>
+                                <?php include('inc-header.php'); ?>
                                 <div class="clearfix"></div>
                             </div>
                         </div>	
@@ -107,7 +107,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>open-orders-cards/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>open-orders-cards.php/"><i class="fa fa-th-large"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -132,18 +132,18 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                         <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
                                             <input id="Submit" type="submit" value="Search" name="Submit" class="btn btn-primary pull-right">
                                         </div>
-<?php if ($_GET['q']) { ?>
+                                        <?php if ($_GET['q']) { ?>
                                             <div class="lineSpacer clear"></div>
                                             <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>open-orders/">Clear search.</a></div>
                                             </div>
-<?php } ?>
+                                        <?php } ?>
                                     </fieldset>
                                 </form>
 
 
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>open-orders-add/" class="btn btn-black">Add new..</a></div>
+                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>open-orders-add.php/" class="btn btn-black">Add new..</a></div>
                                 <?php } ?>
                                 <?php
                                 $fieldsArray = array('order__Number', 'order__Customer_Name', 'order__Mobile_Number');
@@ -163,7 +163,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                             <th style="width:28%">Mobile Number</th>
                                             <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                 <th style="width:10%">&nbsp;</th>
-<?php } ?>
+                                            <?php } ?>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -199,19 +199,19 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                                     <?php echo $sr = $sr + 1; ?>.
                                                 </td>
                                                 <td>
-                                                    <a href="<?php echo ADMIN_URL; ?>pos/?u=<?php echo sucrypt($row['order__UID']); ?>" class="underline"><?php echo suUnstrip($row['order__Number']); ?></a>
+                                                    <a href="<?php echo ADMIN_URL; ?>pos.php/?u=<?php echo sucrypt($row['order__UID']); ?>" class="underline"><?php echo suUnstrip($row['order__Number']); ?></a>
                                                 </td>
                                                 <td><?php echo suUnstrip($row['order__Customer_Name']); ?></td>
                                                 <td><?php echo suUnstrip($row['order__Mobile_Number']); ?></td>
 
                                                 <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                     <td style="text-align: center;">
-                                                        
+
                                                         <?php if ($editAccess == TRUE) { ?>
-                                                            <a href="<?php echo ADMIN_URL; ?>open-orders-update/<?php echo $row['order__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
+                                                            <a href="<?php echo ADMIN_URL; ?>open-orders-update.php/<?php echo $row['order__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
                                                         <?php } ?>
                                                         <?php if ($deleteAccess == TRUE) { ?>
-                                                            <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>open-orders-remote/delete/<?php echo $row['order__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
+                                                            <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>open-orders-remote.php/delete/<?php echo $row['order__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
                                                         <?php } ?>
                                                     </td>
                                                 <?php } ?>
@@ -230,13 +230,13 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>open-orders/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>open-orders.php/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>open-orders/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>open-orders.php/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

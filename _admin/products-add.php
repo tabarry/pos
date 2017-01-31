@@ -25,7 +25,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                 suToggleButton(1);
             });
         </script> 
-         <script type="text/javascript">
+        <script type="text/javascript">
             function doAutocomplete(arg) {
 
                 $(arg).autocomplete({
@@ -96,8 +96,8 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>products-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>products/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>products-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>products.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -113,14 +113,14 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                 </div>
                                 <!--SU STARTS-->
 
-                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>products-remote/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" enctype="multipart/form-data">
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>products-remote.php/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" enctype="multipart/form-data">
 
                                     <div class="gallery clearfix">
                                         <div class="form-group">
                                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">        
                                                 <label><?php echo $dbs_sulata_products['product__Category_req']; ?>Category:
                                                     <?php if ($addAccess == 'true') { ?>    
-                                                        <a title="Add new record.." rel="prettyPhoto[iframes]" href="<?php echo ADMIN_URL; ?>categories-add/?overlay=yes&iframe=true&width=50%&height=100%"><img border='0' src='<?php echo BASE_URL; ?>sulata/images/add-icon.png'/></a>
+                                                        <a title="Add new record.." rel="prettyPhoto[iframes]" href="<?php echo ADMIN_URL; ?>categories-add.php/?overlay=yes&iframe=true&width=50%&height=100%"><img border='0' src='<?php echo BASE_URL; ?>sulata/images/add-icon.png'/></a>
 
                                                         <a onclick="suReload('product__Category', '<?php echo ADMIN_URL; ?>', '<?php echo suCrypt('sulata_categories'); ?>', '<?php echo suCrypt('category__ID'); ?>', '<?php echo suCrypt('category__Category'); ?>');" href="javascript:;"><img border='0' src='<?php echo BASE_URL; ?>sulata/images/reload-icon.png'/></a>    
                                                     <?php } ?>    
@@ -132,18 +132,18 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                                 echo suDropdown('product__Category', $options, '', $js)
                                                 ?>
                                             </div>
-                                
+
                                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                 <label><?php echo $dbs_sulata_products['product__Picture_req']; ?>Picture:</label>
                                                 <?php
                                                 $arg = array('type' => $dbs_sulata_products['product__Picture_html5_type'], 'name' => 'product__Picture', 'id' => 'product__Picture', $dbs_sulata_products['product__Picture_html5_req'] => $dbs_sulata_products['product__Picture_html5_req']);
                                                 echo suInput('input', $arg);
                                                 ?>
-                                                   <div><?php echo $getSettings['allowed_image_formats']; ?></div>
+                                                <div><?php echo $getSettings['allowed_image_formats']; ?></div>
                                             </div>
                                         </div>
 
-                                     
+
 
 
                                         <div class="form-group">
@@ -154,7 +154,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                                 echo suInput('input', $arg);
                                                 ?>
                                             </div>
-                           
+
                                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">                
                                                 <label><?php echo $dbs_sulata_products['product__Name_req']; ?>Name:</label>
                                                 <?php
@@ -172,7 +172,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                                 echo suInput('input', $arg);
                                                 ?>
                                             </div>    
-                                        
+
                                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">            
                                                 <label><?php echo $dbs_sulata_products['product__Price_req']; ?>Price<sup><?php echo $getSettings['site_currency']; ?></sup>:</label>
                                                 <?php
@@ -209,12 +209,12 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                                     <thead>
                                                         <tr>
                                                             <th>
-                                                               Material
+                                                                Material
                                                             </th>
                                                             <th>
                                                                 Unit
                                                             </th>
-                                                           
+
                                                             <th>
                                                                 Quantity
                                                             </th>
@@ -234,7 +234,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                                             <td width="20%">
                                                                 <input type="text" autocomplete="off" name="unit[]" id="unit[]" readonly="readonly" class="form-control"/>
                                                             </td>
-                                                           
+
                                                             <td width="10%">
                                                                 <input type="text" autocomplete="off" name="qty[]"  value="1"   class="form-control "/>
                                                             </td >
@@ -277,7 +277,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                                 <td width="20%">
                                                     <input type="text" autocomplete="off" name="unit[]" id="unit[]" readonly="readonly" class="form-control"/>
                                                 </td>
-                                                
+
                                                 <td width="10%">
                                                     <input type="text" autocomplete="off" name="qty[]"  value="1"  class="form-control"   />
                                                 </td >
@@ -289,7 +289,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                     </table>
 
                                 </form>
-            <?php
+                                <?php
                                 $sql_product = "SELECT rawmaterial__Unit,rawmaterial__Material,rawmaterial__ID FROM sulata_raw_materials WHERE rawmaterial__dbState = 'Live' ";
                                 $rs_product = suQuery($sql_product);
                                 while ($row_product = suFetch($rs_product)) {
@@ -347,20 +347,20 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                                 // look for the entry with a matching `code` value
                                                 if (obj[i].serial.toLowerCase() == str.value.toLowerCase()) {
 
-                                                   
+
                                                     //alert(x);
                                                     //Get and set item
                                                     id = findPrev(str, 1);
                                                     id.val(obj[i].id);
                                                     var y = id.val();
                                                     //alert(y);
-                                                             //alert(y);
+                                                    //alert(y);
                                                     var myarr = document.getElementsByName('material__ID[]');
-                                                    var numberofElements = myarr.length-3;
+                                                    var numberofElements = myarr.length - 3;
                                                     //alert(numberofElements);
                                                     for (var j = 0; j <= numberofElements; j++) {
                                                         var x = document.getElementsByName("material__ID[]")[j].value;
-                                                      
+
                                                         //alert(x);
                                                         //alert(z);
                                                         if (x == y) {
@@ -380,7 +380,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                                     //Get and set item
                                                     code = findNext(str, 1);
                                                     code.val(obj[i].unit);
-                                            
+
                                                     qty = findNext(str, 2);
                                                     qty.val('1');
 
@@ -389,7 +389,7 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                                 } else {
                                                     code = findNext(str, 1);
                                                     code.val('');
-                                                   
+
                                                     qty = findNext(str, 2);
                                                     qty.val('0');
 

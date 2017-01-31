@@ -18,9 +18,9 @@
         </a>
         <!-- Dropdown -->
         <ul class="dropdown-menu" aria-labelledby="profile">
-            <li><a href="<?php echo ADMIN_URL; ?>users-update/"><i class="fa fa-user"></i> Update Profile</a></li>
-            <li><a href="<?php echo ADMIN_URL; ?>settings<?php echo $tableCardLink; ?>/"><i class="fa fa-cogs"></i> Change Settings</a></li>
-            <li><a href="<?php echo ADMIN_URL; ?>login/?do=logout" target="remote"><i class="fa fa-power-off"></i> Log Out</a></li>
+            <li><a href="<?php echo ADMIN_URL; ?>users-update.php/"><i class="fa fa-user"></i> Update Profile</a></li>
+            <li><a href="<?php echo ADMIN_URL; ?>settings<?php echo $tableCardLink; ?>.php/"><i class="fa fa-cogs"></i> Change Settings</a></li>
+            <li><a href="<?php echo ADMIN_URL; ?>login.php/?do=logout" target="remote"><i class="fa fa-power-off"></i> Log Out</a></li>
         </ul>
     </div>
 <?php } ?>

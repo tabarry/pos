@@ -89,7 +89,7 @@ $sql = $sqlSelect . $sqlFrom;
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>products/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>products.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -116,7 +116,7 @@ $sql = $sqlSelect . $sqlFrom;
                                         </div>
                                         <?php if ($_GET['q']) { ?>
                                             <div class="lineSpacer clear"></div>
-                                            <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>products-cards/">Clear search.</a></div>
+                                            <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>products-cards.php/">Clear search.</a></div>
                                             </div>
                                         <?php } ?>
                                     </fieldset>
@@ -125,7 +125,7 @@ $sql = $sqlSelect . $sqlFrom;
 
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>products-add/" class="btn btn-black">Add new..</a></div>
+                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>products-add.php/" class="btn btn-black">Add new..</a></div>
                                 <?php } ?>
                                 <?php
                                 $fieldsArray = array('product__Category', 'product__Picture', 'product__Code', 'product__Name', 'product__Price', 'product__Status');
@@ -167,12 +167,12 @@ $sql = $sqlSelect . $sqlFrom;
                                                 <header>
                                                     <?php if ($editAccess == TRUE) { ?>
 
-                                                        <a href="<?php echo ADMIN_URL; ?>products-update/<?php echo $row['product__ID']; ?>/"><i class="fa fa-edit"></i></a>
+                                                        <a href="<?php echo ADMIN_URL; ?>products-update.php/<?php echo $row['product__ID']; ?>/"><i class="fa fa-edit"></i></a>
                                                     <?php } ?>
 
                                                     <?php if ($deleteAccess == TRUE) { ?>
 
-                                                        <a onclick="return delById('card_<?php echo $row['product__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>products-remote/delete/<?php echo $row['product__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
+                                                        <a onclick="return delById('card_<?php echo $row['product__ID']; ?>', '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>products-remote.php/delete/<?php echo $row['product__ID']; ?>/" target="remote"><i class="fa fa-trash"></i></a>
                                                     <?php } ?>
 
                                                 </header>
@@ -261,13 +261,13 @@ $sql = $sqlSelect . $sqlFrom;
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>products/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>products.php/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>products/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>products.php/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>

@@ -10,13 +10,13 @@ $pageTitle = 'Daily Inventory Report';
 $downloadAccess = TRUE;
 
 
-if($_GET['startDate']!=""){
+if ($_GET['startDate'] != "") {
     $date = suDate2Db($_GET['startDate']);
-}else{
+} else {
     $date = date("Y-m-d");
 }
 
- $sql = "SELECT DT.rawmaterial__Material,DT.rawmaterial__Material, DT.rawmaterial__Unit, SUM(DT.tot ) as total from( SELECT RM.rawmaterial__Material, RM.rawmaterial__Unit, ( PM.promaterial__Quantity * OD.orderdet__Quantity) as tot FROM sulata_product_material PM INNER JOIN sulata_raw_materials RM ON PM.promaterial__Material = RM.rawmaterial__ID INNER JOIN sulata_products P ON P.product__ID = PM.promaterial__Product INNER JOIN sulata_order_details OD ON P.product__ID = OD.orderdet__Product INNER JOIN sulata_orders O ON O.order__UID = OD.orderdet__Order_UID WHERE ((O.order__Status = 'Received') OR (O.order__Status = 'Delivered')) AND date(order__Date)='" . $date . "' group by P.product__ID,rawmaterial__Material, rawmaterial__Unit, tot ) as DT group by DT.rawmaterial__Material, DT.rawmaterial__Unit  ";
+$sql = "SELECT DT.rawmaterial__Material,DT.rawmaterial__Material, DT.rawmaterial__Unit, SUM(DT.tot ) as total from( SELECT RM.rawmaterial__Material, RM.rawmaterial__Unit, ( PM.promaterial__Quantity * OD.orderdet__Quantity) as tot FROM sulata_product_material PM INNER JOIN sulata_raw_materials RM ON PM.promaterial__Material = RM.rawmaterial__ID INNER JOIN sulata_products P ON P.product__ID = PM.promaterial__Product INNER JOIN sulata_order_details OD ON P.product__ID = OD.orderdet__Product INNER JOIN sulata_orders O ON O.order__UID = OD.orderdet__Order_UID WHERE ((O.order__Status = 'Received') OR (O.order__Status = 'Delivered')) AND date(order__Date)='" . $date . "' group by P.product__ID,rawmaterial__Material, rawmaterial__Unit, tot ) as DT group by DT.rawmaterial__Material, DT.rawmaterial__Unit  ";
 
 $sql2 = "SELECT  product__ID,product__Name,SUM(orderdet__Quantity) AS totalQuantity,DATE_FORMAT(order__Date, '%b %d, %y') AS order__Date2  FROM sulata_order_details INNER JOIN sulata_products ON product__ID = orderdet__Product INNER JOIN sulata_orders ON order__ID = orderdet__Order WHERE ((order__Status = 'Received') OR (order__Status = 'Delivered')) GROUP BY product__ID";
 //Download CSV
@@ -102,50 +102,50 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
                                 <h3 class="pull-left"><i class="fa fa-desktop green"></i> <?php echo $pageTitle; ?></h3>
                                 <p>&nbsp;</p>
                                 <form name="suAdvancedForm" id="suAdvancedForm" method="get" action="">
-                                <fieldset style="border: 1px solid #eee;padding: 20px;">
-                                    <div class="form-group" style="margin-top: 10px;">
+                                    <fieldset style="border: 1px solid #eee;padding: 20px;">
+                                        <div class="form-group" style="margin-top: 10px;">
 
-                                        <div class="clearfix"></div>
-                                        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-                                            <label ><i class="fa fa-calendar blue"></i> Search by Date</label>
-                                            <input type="text" name="startDate" id="startDate" autocomplete="off" class="form-control dateBox" maxlength="" value="<?php echo $_GET['startDate'] ?>" /></div>
+                                            <div class="clearfix"></div>
+                                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                                <label ><i class="fa fa-calendar blue"></i> Search by Date</label>
+                                                <input type="text" name="startDate" id="startDate" autocomplete="off" class="form-control dateBox" maxlength="" value="<?php echo $_GET['startDate'] ?>" /></div>
 
 
-                                      
-                                    </div>
 
-                                    <script>
-                                        $(function() {
-                                            $('#startDate').datepicker({
-                                                changeMonth: true,
-                                                changeYear: true
-                                            });
-                                            $('#startDate').datepicker('option', 'yearRange', 'c-100:c+10');
-                                            $('#startDate').datepicker('option', 'dateFormat', '<?php echo DATE_FORMAT; ?>');
-<?php if ($_GET['startDate'] != '') { ?>
-                                                $('#startDate').datepicker('setDate', '<?php echo $_GET['startDate'] ?>');
-<?php } ?>
-                                        });
-                                   
-
-                                    </script>  
-                                    <div class="clearfix"></div>
-                                    <div class="form-group" style="margin-top: 10px;">
-                                        <div class="col-xs-5 col-sm-2 col-md-4 col-lg-4">
-                                            <input id="Submit_advance" type="submit" value="Search" name="Submit_advance" class="btn btn-primary pull-right">
                                         </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </fieldset>
-                            </form>
-                                 <?php if ($_GET['startDate']) { ?>
-                               
-                                <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>daily-inventory/">Clear search.</a></div>
-                            </div>
-                        <?php } ?>
-                                <div class="clearfix"></div>
-                            </div>
-                        
+
+                                        <script>
+                                            $(function() {
+                                                $('#startDate').datepicker({
+                                                    changeMonth: true,
+                                                    changeYear: true
+                                                });
+                                                $('#startDate').datepicker('option', 'yearRange', 'c-100:c+10');
+                                                $('#startDate').datepicker('option', 'dateFormat', '<?php echo DATE_FORMAT; ?>');
+<?php if ($_GET['startDate'] != '') { ?>
+                                                    $('#startDate').datepicker('setDate', '<?php echo $_GET['startDate'] ?>');
+<?php } ?>
+                                            });
+
+
+                                        </script>  
+                                        <div class="clearfix"></div>
+                                        <div class="form-group" style="margin-top: 10px;">
+                                            <div class="col-xs-5 col-sm-2 col-md-4 col-lg-4">
+                                                <input id="Submit_advance" type="submit" value="Search" name="Submit_advance" class="btn btn-primary pull-right">
+                                            </div>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </fieldset>
+                                </form>
+                                <?php if ($_GET['startDate']) { ?>
+
+                                    <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>daily-inventory.php/">Clear search.</a></div>
+                                </div>
+                            <?php } ?>
+                            <div class="clearfix"></div>
+                        </div>
+
 
                         <!-- TABLE -->
 
@@ -186,20 +186,18 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
                                 }
 //Get records from database
 
-                                 $sql = "$sql $sort LIMIT " . $_GET['start'] . "," . $getSettings['page_size'];
+                                $sql = "$sql $sort LIMIT " . $_GET['start'] . "," . $getSettings['page_size'];
 
                                 $result = suQuery($sql);
                                 $numRows = suNumRows($result);
 
                                 while ($row = suFetch($result)) {
-
-                   
                                     ?>
-                                
+
 
                                     <tr>
                                         <td>
-                                    <?php echo $sr = $sr + 1; ?>.
+                                            <?php echo $sr = $sr + 1; ?>.
                                         </td>
                                         <td><?php echo suUnstrip($row['rawmaterial__Material']); ?></td>
                                         <td><?php echo suUnstrip($row['rawmaterial__Unit']); ?></td>
@@ -211,36 +209,31 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
 
 
                                     </tr>
-<?php 
-
-
-                                    
-                                    
-                                    }suFree($result);
-                                    
-                                    ?>
+                                    <?php
+                                }suFree($result);
+                                ?>
 
 
                             </tbody>
                         </table>
 
                         <!-- /TABLE -->
-<?php
+                        <?php
 //                                $sqlP = "SELECT COUNT(order__ID) AS totalRecs FROM FROM sulata_order_details INNER JOIN sulata_products ON product__ID = orderdet__Product INNER JOIN sulata_orders ON order__ID = orderdet__Order WHERE order__Status = 'Received' $where";
 //                                suPaginate($sqlP);
-?>
-                        <?php if ($downloadAccess == TRUE ) { ?>
+                        ?>
+                        <?php if ($downloadAccess == TRUE) { ?>
                             <p>&nbsp;</p>
                             <p><a target="remote" href="<?php echo $_SERVER['PHP_SELF']; ?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download</a></p>
                             <p>&nbsp;</p>
                             <div class="clearfix"></div>
-<?php } ?>
+                        <?php } ?>
 
 
                         <!--SU ENDS-->
                     </div>
                 </div>
-<?php include('inc-site-footer.php'); ?>
+                <?php include('inc-site-footer.php'); ?>
             </div>
         </div>
 

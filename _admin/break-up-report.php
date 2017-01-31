@@ -147,7 +147,7 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
                             </form>
                             <?php if ($_GET['startDate']) { ?>
                                 <div class="lineSpacer clear"></div>
-                                <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>break-up-report/">Clear search.</a></div>
+                                <div class="pull-right"><a style="text-decoration:underline !important;" href="<?php echo ADMIN_URL; ?>break-up-report.php/">Clear search.</a></div>
                             </div>
                         <?php } ?>
 
@@ -198,7 +198,7 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
                                     ?>
                                     <tr>
                                         <td>
-                                    <?php echo $sr = $sr + 1; ?>.
+                                            <?php echo $sr = $sr + 1; ?>.
                                         </td>
                                         <td><?php echo suUnstrip($row['product']); ?></td>
                                         <td><?php echo suUnstrip($row['totalQuantity']); ?></td>
@@ -209,29 +209,29 @@ if (suSegment(1) == 'stream-csv' && $downloadAccess == TRUE) {
 
 
                                     </tr>
-<?php }suFree($result) ?>
+                                <?php }suFree($result) ?>
 
 
                             </tbody>
                         </table>
 
                         <!-- /TABLE -->
-<?php
+                        <?php
 //                                $sqlP = "SELECT COUNT(order__ID) AS totalRecs FROM FROM sulata_order_details INNER JOIN sulata_products ON product__ID = orderdet__Product INNER JOIN sulata_orders ON order__ID = orderdet__Order WHERE order__Status = 'Received' $where";
 //                                suPaginate($sqlP);
-?>
+                        ?>
                         <?php if ($downloadAccess == TRUE && $numRows > 0) { ?>
                             <p>&nbsp;</p>
                             <p><a target="remote" href="<?php echo $_SERVER['PHP_SELF']; ?>/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download</a></p>
                             <p>&nbsp;</p>
                             <div class="clearfix"></div>
-<?php } ?>
+                        <?php } ?>
 
 
                         <!--SU ENDS-->
                     </div>
                 </div>
-<?php include('inc-site-footer.php'); ?>
+                <?php include('inc-site-footer.php'); ?>
             </div>
         </div>
 

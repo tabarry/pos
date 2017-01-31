@@ -105,7 +105,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>order-details-cards/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>order-details-cards.php/"><i class="fa fa-th-large"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -141,7 +141,7 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
 
                                 <div class="lineSpacer clear"></div>
                                 <?php if ($addAccess == 'true') { ?>
-                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>order-details-add/" class="btn btn-black">Add new..</a></div>
+                                    <div id="table-area"><a href="<?php echo ADMIN_URL; ?>order-details-add.php/" class="btn btn-black">Add new..</a></div>
                                 <?php } ?>
                                 <?php
                                 $fieldsArray = array('orderdet__Order', 'orderdet__Product', 'orderdet__Code', 'orderdet__Name', 'orderdet__Price', 'orderdet__Quantity');
@@ -209,10 +209,10 @@ if (suSegment(1) == 'stream-pdf' && $downloadAccessPDF == TRUE) {
                                                 <?php if (($editAccess == TRUE) || ($deleteAccess == TRUE)) { ?>
                                                     <td style="text-align: center;">
                                                         <?php if ($editAccess == TRUE) { ?>
-                                                            <a href="<?php echo ADMIN_URL; ?>order-details-update/<?php echo $row['orderdet__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
+                                                            <a href="<?php echo ADMIN_URL; ?>order-details-update.php/<?php echo $row['orderdet__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
                                                         <?php } ?>
                                                         <?php if ($deleteAccess == TRUE) { ?>
-                                                            <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>order-details-remote/delete/<?php echo $row['orderdet__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
+                                                            <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>order-details-remote.php/delete/<?php echo $row['orderdet__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
                                                         <?php } ?>
                                                     </td>
                                                 <?php } ?>

@@ -11,8 +11,8 @@ error_reporting("E_ALL & ~E_NOTICE & ~E_DEPRECATED");
 //Include the language file
 include('language.php');
 //MISC SETTINGS
-define('LOCAL_URL', 'http://localhost/pos/');
-define('WEB_URL', 'http://www.truckcafe.pk/pos/');
+define('LOCAL_URL', 'http://localhost:8080/pos/');
+define('WEB_URL', 'http://192.168.15.111:8080/pos/');
 define('API_URL', 'http://www.truckcafe.pk/pos/api/');
 //
 define('SESSION_PREFIX', '11d_');
@@ -26,7 +26,7 @@ define('API_KEY', 'BMQ4957');
 //Other settings are in sulata_settings table
 //If local
 if (!strstr($_SERVER['HTTP_HOST'], ".")) {
-    define('DEBUG', TRUE);
+    define('DEBUG', FALSE);
     define('BASE_URL', LOCAL_URL);
     define('ADMIN_URL', BASE_URL . '_admin/');
     define('ADMIN_SUBMIT_URL', ADMIN_URL);

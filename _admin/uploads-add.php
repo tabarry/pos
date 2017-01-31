@@ -5,7 +5,8 @@ include('../sulata/includes/connection.php');
 include('../sulata/includes/get-settings.php');
 include('../sulata/includes/db-structure.php');
 checkLogin();
-$pageName='Add Uploads';$pageTitle='Add Uploads';
+$pageName = 'Add Uploads';
+$pageTitle = 'Add Uploads';
 if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
     suExit(INVALID_ACCESS);
 }
@@ -84,8 +85,8 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>uploads-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>uploads/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>uploads-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>uploads.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -100,44 +101,44 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                     <p></p>
                                 </div>
                                 <!--SU STARTS-->
-                                
-        <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>uploads-remote/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" enctype="multipart/form-data">
 
-            <div class="gallery clearfix">
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
-<label><?php echo $dbs_sulata_uploads['upload__Title_req']; ?>Title:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_uploads['upload__Title_html5_type'] , 'name' => 'upload__Title', 'id' => 'upload__Title', 'autocomplete' => 'off', 'maxlength' =>  $dbs_sulata_uploads['upload__Title_max']  , 'value'=>'',$dbs_sulata_uploads['upload__Title_html5_req'] => $dbs_sulata_uploads['upload__Title_html5_req'],'class'=>'form-control');
-                                echo suInput('input', $arg);
-                                ?>
-</div>
-</div>
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>uploads-remote.php/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" enctype="multipart/form-data">
 
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-<label><?php echo $dbs_sulata_uploads['upload__Picture_req']; ?>Picture:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_uploads['upload__Picture_html5_type'], 'name' => 'upload__Picture', 'id' => 'upload__Picture',$dbs_sulata_uploads['upload__Picture_html5_req'] => $dbs_sulata_uploads['upload__Picture_html5_req']);
-                                echo suInput('input', $arg);
-                                ?>
-</div>
-</div>
-                               
-<div><?php echo $getSettings['allowed_image_formats']; ?></div>
-    
+                                    <div class="gallery clearfix">
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
+                                                <label><?php echo $dbs_sulata_uploads['upload__Title_req']; ?>Title:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_uploads['upload__Title_html5_type'], 'name' => 'upload__Title', 'id' => 'upload__Title', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_uploads['upload__Title_max'], 'value' => '', $dbs_sulata_uploads['upload__Title_html5_req'] => $dbs_sulata_uploads['upload__Title_html5_req'], 'class' => 'form-control');
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>
+                                        </div>
 
-        
-        </div>
-        <div class="lineSpacer clear"></div>
-        <p>
-        <?php
-        $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
-        echo suInput('input', $arg);
-        ?>                              
-        </p>
-        <p>&nbsp;</p>
-        </form>
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                <label><?php echo $dbs_sulata_uploads['upload__Picture_req']; ?>Picture:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_uploads['upload__Picture_html5_type'], 'name' => 'upload__Picture', 'id' => 'upload__Picture', $dbs_sulata_uploads['upload__Picture_html5_req'] => $dbs_sulata_uploads['upload__Picture_html5_req']);
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>
+                                        </div>
+
+                                        <div><?php echo $getSettings['allowed_image_formats']; ?></div>
+
+
+
+                                    </div>
+                                    <div class="lineSpacer clear"></div>
+                                    <p>
+                                        <?php
+                                        $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
+                                        echo suInput('input', $arg);
+                                        ?>                              
+                                    </p>
+                                    <p>&nbsp;</p>
+                                </form>
 
                                 <!--SU ENDS-->
                             </div>

@@ -64,15 +64,15 @@ if ($do == "add") {
         $max_id = suInsertId();
         //Upload files
 
-    for ($i = 0; $i <= sizeof($_POST['product__Name'])-1; $i++) {
-        $sqlPrice = "SELECT product__Price FROM sulata_products WHERE product__dbState = 'Live' AND product__Status = 'Available' AND product__ID = '".$_POST['product__Name'][$i]."'";
-      $rsPrice = suQuery($sqlPrice);
-      $rowPrice = suFetch($rsPrice);
-           $sql = "INSERT INTO sulata_menu_details SET menudetail__Menu='".$max_id."', menudetail__Product='".$_POST['product__Name'][$i]."',menudetail__Product_Price='".$rowPrice['product__Price']."',  menudetail__Last_Action_On ='".date('Y-m-d H:i:s')."',  menudetail__Last_Action_By  ='".$_SESSION[SESSION_PREFIX . 'user__Name'] ."'";   
+        for ($i = 0; $i <= sizeof($_POST['product__Name']) - 1; $i++) {
+            $sqlPrice = "SELECT product__Price FROM sulata_products WHERE product__dbState = 'Live' AND product__Status = 'Available' AND product__ID = '" . $_POST['product__Name'][$i] . "'";
+            $rsPrice = suQuery($sqlPrice);
+            $rowPrice = suFetch($rsPrice);
+            $sql = "INSERT INTO sulata_menu_details SET menudetail__Menu='" . $max_id . "', menudetail__Product='" . $_POST['product__Name'][$i] . "',menudetail__Product_Price='" . $rowPrice['product__Price'] . "',  menudetail__Last_Action_On ='" . date('Y-m-d H:i:s') . "',  menudetail__Last_Action_By  ='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "'";
             suQuery($sql);
         }
-      
-       
+
+
         /* POST INSERT PLACE */
 
         suPrintJs('
@@ -81,14 +81,14 @@ if ($do == "add") {
            
 
         ');
-           suPrintJs("
-            parent.window.location.href='" . ADMIN_URL . "menu-details/".$max_id."/';
+        suPrintJs("
+            parent.window.location.href='" . ADMIN_URL . "menu-details.php/" . $max_id . "/';
         ");
     }
 }
 //Update record
 if ($do == "update") {
-    
+
 //Check referrer
     suCheckRef();
 //Validate
@@ -130,27 +130,27 @@ if ($do == "update") {
         $max_id = $_POST['menu__ID'];
         //Upload files
         $products = array();
-    $sqlItems = "SELECT menudetail__Product FROM sulata_menu_details WHERE menudetail__dbState = 'Live' AND menudetail__Menu = '".$max_id."' ";
+        $sqlItems = "SELECT menudetail__Product FROM sulata_menu_details WHERE menudetail__dbState = 'Live' AND menudetail__Menu = '" . $max_id . "' ";
         $rsItems = suQuery($sqlItems);
-        while($rowItems = suFetch($rsItems)){
+        while ($rowItems = suFetch($rsItems)) {
             $products[] = $rowItems['menudetail__Product'];
         }
         $result = array_diff($products, $_POST['product__Name']);
         //print_array($result);
-        foreach($result as $row1){
-            $sql = "DELETE FROM sulata_menu_details WHERE menudetail__Product = '".$row1."' AND menudetail__dbState = 'Live' AND menudetail__Menu = '".$max_id."'";
-           suQuery($sql);
-        }
-          for ($i = 0; $i <= sizeof($_POST['product__Name_2'])-1; $i++) {
-        $sqlPrice = "SELECT product__Price FROM sulata_products WHERE product__dbState = 'Live' AND product__Status = 'Available' AND product__ID = '".$_POST['product__Name_2'][$i]."'";
-      $rsPrice = suQuery($sqlPrice);
-      $rowPrice = suFetch($rsPrice);
-           $sql = "INSERT INTO sulata_menu_details SET menudetail__Menu='".$max_id."', menudetail__Product='".$_POST['product__Name_2'][$i]."',menudetail__Product_Price='".$rowPrice['product__Price']."',  menudetail__Last_Action_On ='".date('Y-m-d H:i:s')."',  menudetail__Last_Action_By  ='".$_SESSION[SESSION_PREFIX . 'user__Name'] ."'";   
+        foreach ($result as $row1) {
+            $sql = "DELETE FROM sulata_menu_details WHERE menudetail__Product = '" . $row1 . "' AND menudetail__dbState = 'Live' AND menudetail__Menu = '" . $max_id . "'";
             suQuery($sql);
         }
-        
-       suPrintJs("
-            parent.window.location.href='" . ADMIN_URL . "menu-details/".$max_id."/';
+        for ($i = 0; $i <= sizeof($_POST['product__Name_2']) - 1; $i++) {
+            $sqlPrice = "SELECT product__Price FROM sulata_products WHERE product__dbState = 'Live' AND product__Status = 'Available' AND product__ID = '" . $_POST['product__Name_2'][$i] . "'";
+            $rsPrice = suQuery($sqlPrice);
+            $rowPrice = suFetch($rsPrice);
+            $sql = "INSERT INTO sulata_menu_details SET menudetail__Menu='" . $max_id . "', menudetail__Product='" . $_POST['product__Name_2'][$i] . "',menudetail__Product_Price='" . $rowPrice['product__Price'] . "',  menudetail__Last_Action_On ='" . date('Y-m-d H:i:s') . "',  menudetail__Last_Action_By  ='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "'";
+            suQuery($sql);
+        }
+
+        suPrintJs("
+            parent.window.location.href='" . ADMIN_URL . "menu-details.php/" . $max_id . "/';
         ");
     }
 }
@@ -170,32 +170,30 @@ if ($do == "delete") {
     $result2 = suQuery($sql2);
 }
 if ($do == "menu-details") {
-    $sql = "DELETE FROM sulata_menu_details WHERE menudetail__Menu = '".$_POST['menu__ID']."'";
+    $sql = "DELETE FROM sulata_menu_details WHERE menudetail__Menu = '" . $_POST['menu__ID'] . "'";
     suQuery($sql);
-     for ($i = 0; $i <= sizeof($_POST['menudetail__Product'])-1; $i++) {
-       
-           $sql = "INSERT INTO sulata_menu_details SET menudetail__Menu='".$_POST['menu__ID']."', menudetail__Product='".$_POST['menudetail__Product'][$i]."',menudetail__Product_Price='".$_POST['menudetail__Product_Price'][$i]."',  menudetail__Last_Action_On ='".date('Y-m-d H:i:s')."',  menudetail__Last_Action_By  ='".$_SESSION[SESSION_PREFIX . 'user__Name'] ."'";   
-            suQuery($sql);
-        }
-      
-      
-           suPrintJs("
-            parent.window.location.href='" . ADMIN_URL . "menus-cards/';
+    for ($i = 0; $i <= sizeof($_POST['menudetail__Product']) - 1; $i++) {
+
+        $sql = "INSERT INTO sulata_menu_details SET menudetail__Menu='" . $_POST['menu__ID'] . "', menudetail__Product='" . $_POST['menudetail__Product'][$i] . "',menudetail__Product_Price='" . $_POST['menudetail__Product_Price'][$i] . "',  menudetail__Last_Action_On ='" . date('Y-m-d H:i:s') . "',  menudetail__Last_Action_By  ='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "'";
+        suQuery($sql);
+    }
+
+
+    suPrintJs("
+            parent.window.location.href='" . ADMIN_URL . "menus-cards.php/';
         ");
 }
 if ($do == "assign-menu") {
-   
-//Check referrer
-   
-    
-         $sql = "UPDATE sulata_settings SET setting__Value='".$_POST['assign_menu']."', setting__Last_Action_On ='" . date('Y-m-d H:i:s') . "',setting__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "' WHERE setting__Key = 'truck_menu'";
 
-       $result = suQuery($sql);
-       $_SESSION[SESSION_PREFIX . 'getSettings'] = '';
+//Check referrer
+
+
+    $sql = "UPDATE sulata_settings SET setting__Value='" . $_POST['assign_menu'] . "', setting__Last_Action_On ='" . date('Y-m-d H:i:s') . "',setting__Last_Action_By='" . $_SESSION[SESSION_PREFIX . 'user__Name'] . "' WHERE setting__Key = 'truck_menu'";
+
+    $result = suQuery($sql);
+    $_SESSION[SESSION_PREFIX . 'getSettings'] = '';
     suPrintJs("
             parent.window.location.href='" . ADMIN_URL . "assign-menu.php';
         ");
-
-
 }
 ?>    

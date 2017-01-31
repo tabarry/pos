@@ -97,8 +97,8 @@ $pageTitle = 'Update Categories';
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>categories-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>categories/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>categories-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>categories.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -114,7 +114,7 @@ $pageTitle = 'Update Categories';
                                 </div>
                                 <!--SU STARTS-->
 
-                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>categories-remote/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>categories-remote.php/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
                                     <div class="gallery clearfix">
                                         <div class="form-group">
                                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                

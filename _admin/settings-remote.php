@@ -122,7 +122,7 @@ if ($do == "update") {
         //Clear settings session
         $_SESSION[SESSION_PREFIX . 'getSettings'] = '';
         if ($_POST['referrer'] == '') {
-            $_POST['referrer'] = ADMIN_URL . 'settings-cards/';
+            $_POST['referrer'] = ADMIN_URL . 'settings-cards.php/';
         }
         suPrintJs("
             parent.window.location.href='" . $_POST['referrer'] . "';

@@ -15,9 +15,9 @@ checkLogin();
         <?php include('inc-head.php'); ?>
         <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(function () {
+            $(document).ready(function() {
                 //Keep session alive
-                $(function () {
+                $(function() {
                     window.setInterval("suStayAlive('<?php echo PING_URL; ?>')", 300000);
                 });
                 //Disable submit button

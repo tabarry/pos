@@ -7,8 +7,8 @@ include('../sulata/includes/db-structure.php');
 checkLogin();
 
 $id = suSegment(1);
-if(!is_numeric($id)){
-	suExit(INVALID_RECORD);
+if (!is_numeric($id)) {
+    suExit(INVALID_RECORD);
 }
 $sql = "SELECT location__ID,location__Location FROM sulata_locations WHERE location__dbState='Live' AND location__ID='" . $id . "'";
 $result = suQuery($sql);
@@ -16,9 +16,10 @@ if (suNumRows($result) == 0) {
     suExit(INVALID_RECORD);
 }
 $row = suFetch($result);
-suFree($result);    
+suFree($result);
 
-$pageName='Update Locations';$pageTitle='Update Locations';
+$pageName = 'Update Locations';
+$pageTitle = 'Update Locations';
 ?>
 <!DOCTYPE html>
 <html>
@@ -94,8 +95,8 @@ $pageName='Update Locations';$pageTitle='Update Locations';
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>locations-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>locations/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>locations-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>locations.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -110,36 +111,36 @@ $pageName='Update Locations';$pageTitle='Update Locations';
                                     <p></p>
                                 </div>
                                 <!--SU STARTS-->
-                                
-        <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>locations-remote/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
-            <div class="gallery clearfix">
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
-<label><?php echo $dbs_sulata_locations['location__Location_req']; ?>Location:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_locations['location__Location_html5_type'] , 'name' => 'location__Location', 'id' => 'location__Location', 'autocomplete' => 'off', 'maxlength' =>  $dbs_sulata_locations['location__Location_max']  , 'value'=>suUnstrip($row['location__Location']),$dbs_sulata_locations['location__Location_html5_req'] => $dbs_sulata_locations['location__Location_html5_req'],'class'=>'form-control');
-                                echo suInput('input', $arg);
-                                ?>
-</div>
-</div>
 
-        
-        <p>
-        <?php
-        $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
-        echo suInput('input', $arg);
-        ?>                              
-        </p>
-        <?php
-        //Referrer field
-        $arg = array('type' => 'hidden', 'name' => 'referrer', 'id' => 'referrer', 'value' => $_SERVER['HTTP_REFERER']);
-        echo suInput('input', $arg);                       
-        //Id field
-        $arg = array('type' => 'hidden', 'name' => 'location__ID', 'id' => 'location__ID', 'value' => $id);
-        echo suInput('input', $arg);
-        ?>
-        <p>&nbsp;</p>
-        </form>
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>locations-remote.php/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
+                                    <div class="gallery clearfix">
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
+                                                <label><?php echo $dbs_sulata_locations['location__Location_req']; ?>Location:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_locations['location__Location_html5_type'], 'name' => 'location__Location', 'id' => 'location__Location', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_locations['location__Location_max'], 'value' => suUnstrip($row['location__Location']), $dbs_sulata_locations['location__Location_html5_req'] => $dbs_sulata_locations['location__Location_html5_req'], 'class' => 'form-control');
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>
+                                        </div>
+
+
+                                        <p>
+                                            <?php
+                                            $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
+                                            echo suInput('input', $arg);
+                                            ?>                              
+                                        </p>
+                                        <?php
+                                        //Referrer field
+                                        $arg = array('type' => 'hidden', 'name' => 'referrer', 'id' => 'referrer', 'value' => $_SERVER['HTTP_REFERER']);
+                                        echo suInput('input', $arg);
+                                        //Id field
+                                        $arg = array('type' => 'hidden', 'name' => 'location__ID', 'id' => 'location__ID', 'value' => $id);
+                                        echo suInput('input', $arg);
+                                        ?>
+                                        <p>&nbsp;</p>
+                                </form>
 
                                 <!--SU ENDS-->
                             </div>

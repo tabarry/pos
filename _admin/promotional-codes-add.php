@@ -5,7 +5,8 @@ include('../sulata/includes/connection.php');
 include('../sulata/includes/get-settings.php');
 include('../sulata/includes/db-structure.php');
 checkLogin();
-$pageName='Add Promotional Codes';$pageTitle='Add Promotional Codes';
+$pageName = 'Add Promotional Codes';
+$pageTitle = 'Add Promotional Codes';
 if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
     suExit(INVALID_ACCESS);
 }
@@ -84,8 +85,8 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>promotional-codes-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>promotional-codes/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>promotional-codes-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>promotional-codes.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -100,86 +101,86 @@ if ($_SESSION[SESSION_PREFIX . 'user__Type'] != 'Admin') {
                                     <p></p>
                                 </div>
                                 <!--SU STARTS-->
-                                
-        <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>promotional-codes-remote/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
 
-            <div class="gallery clearfix">
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
-<label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Code_req']; ?>Code:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_promotional_codes['promotionalcode__Code_html5_type'] , 'name' => 'promotionalcode__Code', 'id' => 'promotionalcode__Code', 'autocomplete' => 'off', 'maxlength' =>  $dbs_sulata_promotional_codes['promotionalcode__Code_max']  , 'value'=>'',$dbs_sulata_promotional_codes['promotionalcode__Code_html5_req'] => $dbs_sulata_promotional_codes['promotionalcode__Code_html5_req'],'class'=>'form-control');
-                                echo suInput('input', $arg);
-                                ?>
-</div>
-</div>
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>promotional-codes-remote.php/add/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" >
 
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">    
-<label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Validity_req']; ?>Validity:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_promotional_codes['promotionalcode__Validity_html5_type'], 'name' => 'promotionalcode__Validity', 'id' => 'promotionalcode__Validity', 'autocomplete' => 'off', 'class' => 'form-control dateBox', 'maxlength' => $dbs_sulata_promotional_codes['promotionalcode__Validity_max'],$dbs_sulata_promotional_codes['promotionalcode__Validity_html5_req'] => $dbs_sulata_promotional_codes['promotionalcode__Validity_html5_req']);
-                                echo suInput('input', $arg);
-                                ?>
-</div>
-</div>
-                                <script>
-                                    $(function() {
-                                        $( '#promotionalcode__Validity' ).datepicker({
-                                            changeMonth: true,
-                                            changeYear: true
-                                        });
-                                        $( '#promotionalcode__Validity' ).datepicker( 'option', 'yearRange', 'c-100:c+10' );
-                                        $( '#promotionalcode__Validity' ).datepicker( 'option', 'dateFormat', '<?php echo DATE_FORMAT; ?>' );
-                                        $('#promotionalcode__Validity').datepicker('setDate', '<?php echo  $today ?>' );                
-                                    });
-		
-                                </script>                                  
-    
+                                    <div class="gallery clearfix">
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                
+                                                <label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Code_req']; ?>Code:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_promotional_codes['promotionalcode__Code_html5_type'], 'name' => 'promotionalcode__Code', 'id' => 'promotionalcode__Code', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_promotional_codes['promotionalcode__Code_max'], 'value' => '', $dbs_sulata_promotional_codes['promotionalcode__Code_html5_req'] => $dbs_sulata_promotional_codes['promotionalcode__Code_html5_req'], 'class' => 'form-control');
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>
+                                        </div>
 
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">        
-<label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Type_req']; ?>Type:</label>
-                                <?php
-                                $options = $dbs_sulata_promotional_codes['promotionalcode__Type_array'];
-                                    $js = "class='form-control'";
-                                echo suDropdown('promotionalcode__Type', $options, '',$js)
-                                ?>
-</div>
-</div>
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">    
+                                                <label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Validity_req']; ?>Validity:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_promotional_codes['promotionalcode__Validity_html5_type'], 'name' => 'promotionalcode__Validity', 'id' => 'promotionalcode__Validity', 'autocomplete' => 'off', 'class' => 'form-control dateBox', 'maxlength' => $dbs_sulata_promotional_codes['promotionalcode__Validity_max'], $dbs_sulata_promotional_codes['promotionalcode__Validity_html5_req'] => $dbs_sulata_promotional_codes['promotionalcode__Validity_html5_req']);
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <script>
+                                            $(function() {
+                                                $('#promotionalcode__Validity').datepicker({
+                                                    changeMonth: true,
+                                                    changeYear: true
+                                                });
+                                                $('#promotionalcode__Validity').datepicker('option', 'yearRange', 'c-100:c+10');
+                                                $('#promotionalcode__Validity').datepicker('option', 'dateFormat', '<?php echo DATE_FORMAT; ?>');
+                                                $('#promotionalcode__Validity').datepicker('setDate', '<?php echo $today ?>');
+                                            });
 
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">            
-<label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Value_req']; ?>Value:</label>
-                                <?php
-                                $arg = array('type' => $dbs_sulata_promotional_codes['promotionalcode__Value_html5_type'], 'name' => 'promotionalcode__Value', 'id' => 'promotionalcode__Value', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_promotional_codes['promotionalcode__Value_max']  , 'value'=>'',$dbs_sulata_promotional_codes['promotionalcode__Value_html5_req'] => $dbs_sulata_promotional_codes['promotionalcode__Value_html5_req'],'class'=>'form-control');
-                                echo suInput('input', $arg);
-                                ?>
-</div>    
-</div>
+                                        </script>                                  
 
-<div class="form-group">
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">        
-<label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Active_req']; ?>Active:</label>
-                                <?php
-                                $options = $dbs_sulata_promotional_codes['promotionalcode__Active_array'];
-                                    $js = "class='form-control'";
-                                echo suDropdown('promotionalcode__Active', $options, '',$js)
-                                ?>
-</div>
-</div>
 
-        
-        </div>
-        <div class="lineSpacer clear"></div>
-        <p>
-        <?php
-        $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
-        echo suInput('input', $arg);
-        ?>                              
-        </p>
-        <p>&nbsp;</p>
-        </form>
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">        
+                                                <label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Type_req']; ?>Type:</label>
+                                                <?php
+                                                $options = $dbs_sulata_promotional_codes['promotionalcode__Type_array'];
+                                                $js = "class='form-control'";
+                                                echo suDropdown('promotionalcode__Type', $options, '', $js)
+                                                ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">            
+                                                <label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Value_req']; ?>Value:</label>
+                                                <?php
+                                                $arg = array('type' => $dbs_sulata_promotional_codes['promotionalcode__Value_html5_type'], 'name' => 'promotionalcode__Value', 'id' => 'promotionalcode__Value', 'autocomplete' => 'off', 'maxlength' => $dbs_sulata_promotional_codes['promotionalcode__Value_max'], 'value' => '', $dbs_sulata_promotional_codes['promotionalcode__Value_html5_req'] => $dbs_sulata_promotional_codes['promotionalcode__Value_html5_req'], 'class' => 'form-control');
+                                                echo suInput('input', $arg);
+                                                ?>
+                                            </div>    
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">        
+                                                <label><?php echo $dbs_sulata_promotional_codes['promotionalcode__Active_req']; ?>Active:</label>
+                                                <?php
+                                                $options = $dbs_sulata_promotional_codes['promotionalcode__Active_array'];
+                                                $js = "class='form-control'";
+                                                echo suDropdown('promotionalcode__Active', $options, '', $js)
+                                                ?>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="lineSpacer clear"></div>
+                                    <p>
+                                        <?php
+                                        $arg = array('type' => 'submit', 'name' => 'Submit', 'id' => 'Submit', 'value' => 'Submit', 'class' => 'btn btn-primary pull-right');
+                                        echo suInput('input', $arg);
+                                        ?>                              
+                                    </p>
+                                    <p>&nbsp;</p>
+                                </form>
 
                                 <!--SU ENDS-->
                             </div>

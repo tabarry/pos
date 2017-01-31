@@ -8,7 +8,7 @@ include('../sulata/includes/db-structure.php');
 checkLogin();
 $id = suSegment(1);
 if ($id == $_SESSION[SESSION_PREFIX . 'user__ID']) {
-    suRedirect(ADMIN_URL . 'users-update/');
+    suRedirect(ADMIN_URL . 'users-update.php/');
 }
 //Conditions for update profile
 if ($id == '') {
@@ -102,8 +102,8 @@ suFree($result);
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>users-cards/"><i class="fa fa-th-large"></i></a>
-                                    <a href="<?php echo ADMIN_URL; ?>users/"><i class="fa fa-table"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>users-cards.php/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>users.php/"><i class="fa fa-table"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -128,7 +128,7 @@ suFree($result);
 
                                 <div class="imgThumb" style="background-image:url(<?php echo $userImage; ?>);"></div>
 
-                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>users-remote/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" enctype="multipart/form-data">
+                                <form class="form-horizontal" action="<?php echo ADMIN_SUBMIT_URL; ?>users-remote.php/update/" accept-charset="utf-8" name="suForm" id="suForm" method="post" target="remote" enctype="multipart/form-data">
 
                                     <div class="gallery clearfix">
 
@@ -210,18 +210,18 @@ suFree($result);
                                                 ?>   
                                             </div>
                                         </div>
-                                               <div class="form-group" <?php echo $editAccess; ?>>
-                                            <?php if($_SESSION[SESSION_PREFIX . 'user__Type']=='Admin'){?>
-                                              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="form-group" <?php echo $editAccess; ?>>
+                                            <?php if ($_SESSION[SESSION_PREFIX . 'user__Type'] == 'Admin') { ?>
+                                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
-                                                <label><?php echo $dbs_sulata_users['user__Type_req']; ?>Type:</label>
-                                                <?php
-                                                $options = $dbs_sulata_users['user__Type_array'];
-                                                $js = "class=\"form-control\"";
-                                                echo suDropdown('user__Type', $options, suUnstrip($row['user__Type']), $js)
-                                                ?>
-                                            </div>
-                                            <?php }?>
+                                                    <label><?php echo $dbs_sulata_users['user__Type_req']; ?>Type:</label>
+                                                    <?php
+                                                    $options = $dbs_sulata_users['user__Type_array'];
+                                                    $js = "class=\"form-control\"";
+                                                    echo suDropdown('user__Type', $options, suUnstrip($row['user__Type']), $js)
+                                                    ?>
+                                                </div>
+                                            <?php } ?>
                                         </div>
 
 

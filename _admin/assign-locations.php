@@ -5,7 +5,8 @@ include('../sulata/includes/connection.php');
 include('../sulata/includes/get-settings.php');
 include('../sulata/includes/db-structure.php');
 checkLogin();
-$pageName='Assign Location';$pageTitle='Assign Location';
+$pageName = 'Assign Location';
+$pageTitle = 'Assign Location';
 
 //Make select statement. The $SqlFrom is also used in $sqlP below.    
 $sqlSelect = "SELECT location__ID,location__Location ";
@@ -85,7 +86,7 @@ $sql = $sqlSelect . $sqlFrom;
                             <div class="single-head">
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-desktop purple"></i> <?php echo $pageTitle; ?></h3>
-                               
+
 
                                 <div class="clearfix"></div>
                             </div>
@@ -99,65 +100,65 @@ $sql = $sqlSelect . $sqlFrom;
                                     <p></p>
                                 </div>
                                 <!--SU STARTS-->
-                                
-                                
-                               
-                                
-                    <div class="lineSpacer clear"></div>
-                
-                                    
-<?php
-if ($_GET['q'] != '') {
-        $where .= " AND location__Location LIKE '%" . suStrip($_GET['q']) . "%' ";
-    }
-    
-if (!$_GET['start']) {
-    $_GET['start'] = 0;
-}
-if (!$_GET['sr']) {
-    $sr = 0;
-} else {
-    $sr = $_GET['sr'];
-}
-if (!$_GET['sort']) {
-    $sort = " ORDER BY location__Location";
-} else {
-    $sort = " ORDER BY " . $_GET['f'] . " " . $_GET['sort'];
-} 
-//Get records from database
-    
-    $sql = "$sql $where $sort LIMIT " . $_GET['start'] . "," . $getSettings['page_size'];
 
-    $result = suQuery($sql);
-    $numRows = suNumRows($result);
-    ?>
-                    <form name="suForm" id="suForm" action="<?php echo ADMIN_URL?>locations-remote.php/assign-location/" target="remote" method="post">
-                    <?php
-    while($row=  suFetch($result)){
-    if($getSettings['truck_location']==$row['location__ID']){
-        $checked = "checked='checked'";
-    }else{
-         $checked = "";
-    }
-?>
+
+
+
+                                <div class="lineSpacer clear"></div>
+
+
+                                <?php
+                                if ($_GET['q'] != '') {
+                                    $where .= " AND location__Location LIKE '%" . suStrip($_GET['q']) . "%' ";
+                                }
+
+                                if (!$_GET['start']) {
+                                    $_GET['start'] = 0;
+                                }
+                                if (!$_GET['sr']) {
+                                    $sr = 0;
+                                } else {
+                                    $sr = $_GET['sr'];
+                                }
+                                if (!$_GET['sort']) {
+                                    $sort = " ORDER BY location__Location";
+                                } else {
+                                    $sort = " ORDER BY " . $_GET['f'] . " " . $_GET['sort'];
+                                }
+//Get records from database
+
+                                $sql = "$sql $where $sort LIMIT " . $_GET['start'] . "," . $getSettings['page_size'];
+
+                                $result = suQuery($sql);
+                                $numRows = suNumRows($result);
+                                ?>
+                                <form name="suForm" id="suForm" action="<?php echo ADMIN_URL ?>locations-remote.php/assign-location/" target="remote" method="post">
+                                    <?php
+                                    while ($row = suFetch($result)) {
+                                        if ($getSettings['truck_location'] == $row['location__ID']) {
+                                            $checked = "checked='checked'";
+                                        } else {
+                                            $checked = "";
+                                        }
+                                        ?>
                                         <!-- CARDS START -->
                                         <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" id="card_<?php echo $row['location__ID']; ?>">
-                                          
-                                            <input type="radio" name="assign_location" id="assign_location" value="<?php echo $row['location__ID']?>"  <?php echo $checked?>> <?php  echo suSubstr(suUnstrip($row['location__Location']));?> 
-                                           
-       </div>
+
+                                            <input type="radio" name="assign_location" id="assign_location" value="<?php echo $row['location__ID'] ?>"  <?php echo $checked ?>> <?php echo suSubstr(suUnstrip($row['location__Location'])); ?> 
+
+                                        </div>
                                         <div class="clearfix"></div>
-                                    <!-- CARDS END -->
-    <?php }suFree($result) ?>
+                                        <!-- CARDS END -->
+                                    <?php }suFree($result) ?>
                                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 " style="margin-top: 20px">
                                         <input type="submit" name="submit" value="Submit" id="submit" class="btn btn-primary" />
                                     </div>
-                    </form>
-<div class="clearfix"></div>
-                                   
-                  
-                         
-                    
+                                </form>
+                                <div class="clearfix"></div>
+
+
+
+
 
                                 <!--SU ENDS-->
                             </div>

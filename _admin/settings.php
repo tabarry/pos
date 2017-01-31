@@ -101,7 +101,7 @@ $deleteAccess = FALSE;
                                 <!-- Heading -->
                                 <h3 class="pull-left"><i class="fa fa-table red"></i> <?php echo $pageTitle; ?></h3>
                                 <div class="pull-right">
-                                    <a href="<?php echo ADMIN_URL; ?>settings-cards/"><i class="fa fa-th-large"></i></a>
+                                    <a href="<?php echo ADMIN_URL; ?>settings-cards.php/"><i class="fa fa-th-large"></i></a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -126,7 +126,7 @@ $deleteAccess = FALSE;
                                             <input id="Submit" type="submit" value="Search" name="Submit" class="btn btn-primary pull-right">
                                             <?php if (isset($_GET['q'])) { ?>
                                                 <div class="lineSpacer clear"></div>
-                                                <div class="pull-right"><a class="underline" href="<?php echo ADMIN_URL; ?>settings/">Clear search.</a></div>
+                                                <div class="pull-right"><a class="underline" href="<?php echo ADMIN_URL; ?>settings.php/">Clear search.</a></div>
                                             <?php } ?>
                                         </div>
                                     </fieldset>
@@ -198,7 +198,7 @@ $deleteAccess = FALSE;
                                                             <a href="<?php echo ADMIN_URL; ?>settings-update.php/<?php echo $row['setting__ID']; ?>/"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/edit.png" title="<?php echo EDIT_RECORD; ?>"/></a>
                                                         <?php } ?>
                                                         <?php if ($deleteAccess == TRUE) { ?>
-                                                            <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>settings-remote/delete/<?php echo $row['setting__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
+                                                            <a onclick="return delRecord(this, '<?php echo CONFIRM_DELETE; ?>')" href="<?php echo ADMIN_URL; ?>settings-remote.php/delete/<?php echo $row['setting__ID']; ?>/" target="remote"><img border="0" src="<?php echo BASE_URL; ?>sulata/images/delete.png" title="<?php echo DELETE_RECORD; ?>"/></a>
                                                         <?php } ?>
                                                     </td>
                                                 <?php } ?>
@@ -213,13 +213,13 @@ $deleteAccess = FALSE;
                                 ?>
                                 <?php if ($downloadAccessCSV == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings.php/stream-csv/" class="btn btn-black pull-right"><i class="fa fa-download"></i> Download CSV</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
                                 <?php if ($downloadAccessPDF == TRUE && $numRows > 0) { ?>
                                     <p>&nbsp;</p>
-                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
+                                    <p><a target="remote" href="<?php echo ADMIN_URL; ?>settings.php/stream-pdf/" class="btn btn-black pull-right"><i class="fa fa-file-pdf-o"></i> Download PDF</a></p>
                                     <p>&nbsp;</p>
                                     <div class="clearfix"></div>
                                 <?php } ?>
