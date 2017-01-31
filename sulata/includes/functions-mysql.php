@@ -80,6 +80,22 @@ if (!function_exists('suErrorNo')) {
     }
 
 }
+/* mysql connection error number */
+if (!function_exists('suConnectErrorNo')) {
+
+    function suConnectErrorNo() {
+        return mysqli_connect_errno();
+    }
+
+}
+/* mysql connection error  */
+if (!function_exists('suConnectError')) {
+
+    function suConnectError() {
+        return mysqli_connect_error();
+    }
+
+}
 /* Close connection function */
 if (!function_exists('suClose')) {
 

@@ -23,7 +23,7 @@ checkLogin();
                 //Disable submit button
                 suToggleButton(1);
             });
-        </script> 
+        </script>
     </head>
 
     <body>
@@ -67,7 +67,7 @@ checkLogin();
                                 <?php include('inc-header.php'); ?>
                                 <div class="clearfix"></div>
                             </div>
-                        </div>	
+                        </div>
                     </div>
 
                 </div>
@@ -86,17 +86,17 @@ checkLogin();
 
                                 <div class="clearfix"></div>
                             </div>
-                            
+
 
                             <div id="content-area">
 
-                                
+
                                 <div class="clearfix"></div>
 
 
                                 <div id="error-area">
                                     <ul></ul>
-                                </div>    
+                                </div>
                                 <div id="message-area">
                                     <p></p>
                                 </div>
@@ -127,11 +127,11 @@ checkLogin();
             <div class="clearfix"></div>
         </div>
         <?php include('inc-footer.php'); ?>
-  
-        
-        <?php suIframe(); ?>  
+
+
+        <?php suIframe(); ?>
     </body>
     <!--PRETTY PHOTO-->
-    <?php include('inc-pretty-photo.php'); ?>    
+    <?php include('inc-pretty-photo.php'); ?>
 
 </html>

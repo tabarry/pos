@@ -2,9 +2,16 @@
 
 /*
  * SULATA FRAMEWORK
- * This file contains the database connection.
+ * This file contains the onlin database connection for sync purbose.
  */
 
-$cn = @mysqli_connect(DB_HOST2, DB_USER2, DB_PASSWORD2, DB_NAME2) or suDie();
+$cn = mysqli_connect(DB2_HOST, DB2_USER, DB2_PASSWORD, DB2_NAME);
+if(suConnectErrorNo()>0){
+  if(suConnectErrorNo()==1045){
+    $cn = mysqli_connect(DB2_HOST, DB2_USER, DB2_PASSWORD2, DB2_NAME);
+  }else{
+    suExit(suConnectError());
+  }
+}
 mysqli_query($cn, "SET NAMES utf8");
-@mysqli_select_db($cn, DB_NAME2) or suDie();
+mysqli_select_db($cn, DB2_NAME) or suDie();

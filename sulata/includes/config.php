@@ -7,12 +7,13 @@
  */
 //Error reporting
 error_reporting("E_ALL & ~E_NOTICE & ~E_DEPRECATED");
-
+//ini_set('display_errors',1);
 //Include the language file
 include('language.php');
 //MISC SETTINGS
-define('LOCAL_URL', 'http://localhost/pos-truck/');
-define('WEB_URL', 'http://192.168.15.56/pos-truck/');
+define('LOCAL_URL', 'http://localhost/pos/');
+define('WEB_URL', 'http://localhost/pos/');
+define('API_URL', 'http://www.truckcafe.pk/pos/api/');
 //
 define('SESSION_PREFIX', '11d_');
 define('UID_LENGTH', 14);
@@ -30,7 +31,6 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
     define('ADMIN_URL', BASE_URL . '_admin/');
     define('ADMIN_SUBMIT_URL', ADMIN_URL);
     define('PING_URL', BASE_URL . 'static/ping.html');
-    define('API_URL', WEB_URL . 'api/');
     define('NOSCRIPT_URL', BASE_URL . 'sulata/static/no-script.html');
     define('ACCESS_DENIED_URL', BASE_URL . 'sulata/static/access-denied.html');
     define('ADMIN_UPLOAD_PATH', '../files/');
@@ -38,21 +38,22 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
     define('LOCAL', TRUE);
     //MySQL DB Settings
     define('DB_HOST', 'localhost');
-    define('DB_NAME', 'pos_truck');
+    define('DB_NAME', 'pos');
     define('DB_USER', 'root');
     define('DB_PASSWORD', 'root1234');
+    define('DB_PASSWORD2', 'root');
     //MySQL DB2 Settings
-    define('DB_HOST', 'localhost');
-    define('DB_NAME', 'pos_truck');
-    define('DB_USER', 'root');
-    define('DB_PASSWORD', 'root1234');
+    define('DB2_HOST', 'localhost');
+    define('DB2_NAME', 'truckcaf_pos');
+    define('DB2_USER', 'truckcaf_pos');
+    define('DB2_PASSWORD', 'Z+iP4VkV1a!+');
+    define('DB2_PASSWORD2', 'Z+iP4VkV1a!+');
 } else {
     define('DEBUG', FALSE);
     define('BASE_URL', WEB_URL);
     define('ADMIN_URL', BASE_URL . '_admin/');
     define('ADMIN_SUBMIT_URL', ADMIN_URL);
     define('PING_URL', BASE_URL . 'sulata/ping.html');
-    define('API_URL', WEB_URL . 'api/');
     define('NOSCRIPT_URL', BASE_URL . 'sulata/static/no-script.html');
     define('ACCESS_DENIED_URL', BASE_URL . 'sulata/static/access-denied.html');
     define('ADMIN_UPLOAD_PATH', '../files/');
@@ -60,18 +61,16 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
     define('LOCAL', FALSE);
     //MySQL Settings
     define('DB_HOST', 'localhost');
-    define('DB_NAME', 'pos_truck');
+    define('DB_NAME', 'pos');
     define('DB_USER', 'root');
     define('DB_PASSWORD', 'root1234');
-//    define('DB_HOST', 'localhost');
-//    define('DB_NAME', 'truckcaf_pos');
-//    define('DB_USER', 'truckcaf_pos');
-//    define('DB_PASSWORD', 'Z+iP4VkV1a!+');
+    define('DB_PASSWORD2', 'root');
     //MySQL DB2 Settings
-    define('DB_HOST', 'localhost');
-    define('DB_NAME', 'truckcaf_pos');
-    define('DB_USER', 'truckcaf_pos');
-    define('DB_PASSWORD', 'Z+iP4VkV1a!+');
+    define('DB2_HOST', 'localhost');
+    define('DB2_NAME', 'truckcaf_pos');
+    define('DB2_USER', 'truckcaf_pos');
+    define('DB2_PASSWORD', 'Z+iP4VkV1a!+');
+    define('DB2_PASSWORD2', 'Z+iP4VkV1a!+');
 }
 //Edit delete download access
 $editAccess = TRUE;
