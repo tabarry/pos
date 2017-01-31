@@ -4,7 +4,7 @@
             $rsLocation = suQuery($sqlLocation);
             $rowLocation = suFetch($rsLocation);
     ?>
-   
+
     <form name="orderForm" id="orderForm" action="<?php echo ADMIN_URL; ?>pos-remote/order/" method="post" target="remote">
         <h4>THIS ORDER</h4>
          <h4>Location: <?php echo $rowLocation['location__Location']?></h4>
@@ -66,7 +66,7 @@
 
             </tr>
             <tr>
-                <td colspan="3" >   <input type="text" name="order__Cash_Recieved" id="order__Cash_Recieved"  autocomplete="off" required="required" value="" style="width: 100px" onkeyup="return cashReceived()" onkeypress="return floatOnly(event)" placeholder="0"  /></td>
+                <td colspan="3" >   <input type="number" name="order__Cash_Recieved" id="order__Cash_Recieved"  autocomplete="off" required="required" value="" style="width: 100px" onkeyup="return cashReceived()" onkeypress="return floatOnly(event)" placeholder="0"  step="0.01" /></td>
 
             </tr>
             <tr>
@@ -82,7 +82,7 @@
 
             </tr>
             <tr>
-                <td colspan="3" >   
+                <td colspan="3" >
                     <textarea name="order__Notes" id="order__Notes" rows="5"></textarea>
                 </td>
 
@@ -157,59 +157,59 @@
 
             return floatOnly(event);
             return cashReceived();
-            
+
         }
-    
+
         function stopSubmit(e) {
 
             if (e.keyCode == 13) { //Stop submitting on enter
                 return false;
-                 
+
             }
-           
+
             return stopSubmit(e);
         }
         function searchCode(e, str) {
             if (e.keyCode == 13) {
-                  
+
                 for (var i = 0; i < obj.length; i++) {
                     // look for the entry with a matching `code` value
                     if (obj[i].code.toLowerCase() == str.value.toLowerCase()) {
-                     
+
                         if (obj[i].type == 'percentage') {
                             radiobtn = document.getElementById("order__Discount_Type1");
                             radiobtn.checked = true;
                             document.getElementById("net_discount").value = obj[i].value;
-                       
+
                          return checkDiscount();
-                       
-                            
-                            
+
+
+
                         } else {
                             radiobtn = document.getElementById("order__Discount_Type2");
                             radiobtn.checked = true;
                             document.getElementById("net_discount").value = obj[i].value;
                            return checkDiscount();
-                     
-                            
-                           
+
+
+
                         }
 
 
 
-                      
+
                     } else {
                        alert('Invalid code.');
                         document.getElementById("net_discount").value = "0";
                            return checkDiscount();
-              
-                         
+
+
                     }
 
                 }
-               
+
                 return false;
-                
+
             }
 
         }

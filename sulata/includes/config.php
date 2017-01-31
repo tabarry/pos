@@ -12,7 +12,7 @@ error_reporting("E_ALL & ~E_NOTICE & ~E_DEPRECATED");
 include('language.php');
 //MISC SETTINGS
 define('LOCAL_URL', 'http://localhost/pos/');
-define('WEB_URL', 'http://localhost/pos/');
+define('WEB_URL', 'http://www.truckcafe.pk/pos/');
 define('API_URL', 'http://www.truckcafe.pk/pos/api/');
 //
 define('SESSION_PREFIX', '11d_');
@@ -61,10 +61,10 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
     define('LOCAL', FALSE);
     //MySQL Settings
     define('DB_HOST', 'localhost');
-    define('DB_NAME', 'pos');
-    define('DB_USER', 'root');
-    define('DB_PASSWORD', 'root');
-    define('DB_PASSWORD2', 'root1234');
+    define('DB_NAME', 'truckcaf_pos');
+    define('DB_USER', 'truckcaf_pos');
+    define('DB_PASSWORD', 'Z+iP4VkV1a!+');
+    define('DB_PASSWORD2', 'Z+iP4VkV1a!+');
     //MySQL DB2 Settings
     define('DB2_HOST', 'localhost');
     define('DB2_NAME', 'truckcaf_pos');

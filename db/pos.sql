@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.10
+-- version 4.0.10.14
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: Jan 31, 2017 at 06:06 AM
--- Server version: 5.5.42
--- PHP Version: 5.5.26
+-- Generation Time: Jan 31, 2017 at 05:19 AM
+-- Server version: 5.5.52-cll
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `pos`
+-- Database: `truckcaf_pos`
 --
 
 -- --------------------------------------------------------
@@ -27,12 +27,13 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `sulata_blank`;
-CREATE TABLE `sulata_blank` (
-  `__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_blank` (
+  `__ID` int(11) NOT NULL AUTO_INCREMENT,
   `__Last_Action_On` datetime NOT NULL,
   `__Last_Action_By` varchar(64) NOT NULL,
-  `__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`__ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -41,13 +42,15 @@ CREATE TABLE `sulata_blank` (
 --
 
 DROP TABLE IF EXISTS `sulata_categories`;
-CREATE TABLE `sulata_categories` (
-  `category__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_categories` (
+  `category__ID` int(11) NOT NULL AUTO_INCREMENT,
   `category__Category` varchar(128) NOT NULL COMMENT '|s',
   `category__Last_Action_On` datetime NOT NULL,
   `category__Last_Action_By` varchar(64) NOT NULL,
-  `category__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `category__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`category__ID`),
+  UNIQUE KEY `category__Name` (`category__Category`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `sulata_categories`
@@ -72,13 +75,14 @@ INSERT INTO `sulata_categories` (`category__ID`, `category__Category`, `category
 --
 
 DROP TABLE IF EXISTS `sulata_locations`;
-CREATE TABLE `sulata_locations` (
-  `location__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_locations` (
+  `location__ID` int(11) NOT NULL AUTO_INCREMENT,
   `location__Location` varchar(100) NOT NULL,
   `location__Last_Action_On` datetime NOT NULL,
   `location__Last_Action_By` varchar(64) NOT NULL,
-  `location__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+  `location__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`location__ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `sulata_locations`
@@ -105,14 +109,16 @@ INSERT INTO `sulata_locations` (`location__ID`, `location__Location`, `location_
 --
 
 DROP TABLE IF EXISTS `sulata_menus`;
-CREATE TABLE `sulata_menus` (
-  `menu__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_menus` (
+  `menu__ID` int(11) NOT NULL AUTO_INCREMENT,
   `menu__Title` varchar(100) NOT NULL,
   `menu__Status` enum('Active','Inactive') NOT NULL,
   `menu__Last_Action_On` datetime NOT NULL,
   `menu__Last_Action_By` varchar(64) NOT NULL,
-  `menu__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `menu__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`menu__ID`),
+  UNIQUE KEY `menu__Title` (`menu__Title`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `sulata_menus`
@@ -129,15 +135,16 @@ INSERT INTO `sulata_menus` (`menu__ID`, `menu__Title`, `menu__Status`, `menu__La
 --
 
 DROP TABLE IF EXISTS `sulata_menu_details`;
-CREATE TABLE `sulata_menu_details` (
-  `menudetail__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_menu_details` (
+  `menudetail__ID` int(11) NOT NULL AUTO_INCREMENT,
   `menudetail__Menu` int(11) NOT NULL,
   `menudetail__Product` int(11) NOT NULL,
   `menudetail__Product_Price` float NOT NULL,
   `menudetail__Last_Action_On` datetime NOT NULL,
   `menudetail__Last_Action_By` varchar(64) NOT NULL,
-  `menudetail__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=185 DEFAULT CHARSET=utf8;
+  `menudetail__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`menudetail__ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=185 ;
 
 --
 -- Dumping data for table `sulata_menu_details`
@@ -244,14 +251,16 @@ INSERT INTO `sulata_menu_details` (`menudetail__ID`, `menudetail__Menu`, `menude
 --
 
 DROP TABLE IF EXISTS `sulata_notices`;
-CREATE TABLE `sulata_notices` (
-  `notice__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_notices` (
+  `notice__ID` int(11) NOT NULL AUTO_INCREMENT,
   `notice__Subject` varchar(128) NOT NULL COMMENT '|s',
   `notice__Notice` text NOT NULL,
   `notice__Last_Action_On` datetime NOT NULL,
   `notice__Last_Action_By` varchar(64) NOT NULL,
-  `notice__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `notice__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`notice__ID`),
+  UNIQUE KEY `notice__Subject` (`notice__Subject`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `sulata_notices`
@@ -267,8 +276,8 @@ INSERT INTO `sulata_notices` (`notice__ID`, `notice__Subject`, `notice__Notice`,
 --
 
 DROP TABLE IF EXISTS `sulata_orders`;
-CREATE TABLE `sulata_orders` (
-  `order__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_orders` (
+  `order__ID` int(11) NOT NULL AUTO_INCREMENT,
   `order__UID` varchar(27) NOT NULL,
   `order__Number` int(11) NOT NULL COMMENT '|s',
   `order__Customer_Name` varchar(50) NOT NULL COMMENT '|s',
@@ -287,8 +296,10 @@ CREATE TABLE `sulata_orders` (
   `order__Location` int(11) NOT NULL,
   `order__Last_Action_On` datetime NOT NULL,
   `order__Last_Action_By` varchar(64) NOT NULL,
-  `order__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=1416 DEFAULT CHARSET=utf8;
+  `order__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`order__ID`),
+  UNIQUE KEY `order__UID` (`order__UID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1417 ;
 
 --
 -- Dumping data for table `sulata_orders`
@@ -1714,7 +1725,8 @@ INSERT INTO `sulata_orders` (`order__ID`, `order__UID`, `order__Number`, `order_
 (1412, '1412', 128, 'HHC AKRAM SB', '', '2017-01-28 14:44:58', 290, 140, 'flat', 150, 0, '0', '', 'Received', '', 'regmt5sphrclnff8h34g4o4nj5', 12, '2017-01-28 14:44:58', 'Truck Cafe', 'Live'),
 (1413, '1413', 129, 'HHC BILAL SULATA', '', '2017-01-28 14:50:00', 200, 200, 'percentage', 0, 0, '0', '', 'Received', '', 'regmt5sphrclnff8h34g4o4nj5', 12, '2017-01-28 14:50:00', 'Truck Cafe', 'Live'),
 (1414, '1414', 130, 'HHC ASIM BHAI', '', '2017-01-28 15:50:29', 290, 140, 'flat', 140, 0, '0', '', 'Cancelled', '', '9v9e4ioqv8t247go5jeabg8ki6', 12, '2017-01-28 15:51:00', 'Truck Cafe', 'Live'),
-(1415, '1415', 131, 'HHC ASIM BHAI', '', '2017-01-28 15:51:34', 290, 140, 'flat', 150, 0, '0', '', 'Received', '', '9v9e4ioqv8t247go5jeabg8ki6', 12, '2017-01-28 15:51:34', 'Truck Cafe', 'Live');
+(1415, '1415', 131, 'HHC ASIM BHAI', '', '2017-01-28 15:51:34', 290, 140, 'flat', 150, 0, '0', '', 'Received', '', '9v9e4ioqv8t247go5jeabg8ki6', 12, '2017-01-28 15:51:34', 'Truck Cafe', 'Live'),
+(1416, '589047d580397', 100, 'SHAHZAD ZAMAN', '', '2017-01-31 13:24:08', 1320, 198, 'percentage', 1122, 0, '0', '', 'Received', '', 'e36371293bb2c67b35865a0942f36810', 10, '2017-01-31 13:24:08', 'Super Admin', 'Live');
 
 -- --------------------------------------------------------
 
@@ -1723,7 +1735,7 @@ INSERT INTO `sulata_orders` (`order__ID`, `order__UID`, `order__Number`, `order_
 --
 
 DROP TABLE IF EXISTS `sulata_order_counter`;
-CREATE TABLE `sulata_order_counter` (
+CREATE TABLE IF NOT EXISTS `sulata_order_counter` (
   `order_count` float NOT NULL,
   `order_count_date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -1784,7 +1796,8 @@ INSERT INTO `sulata_order_counter` (`order_count`, `order_count_date`) VALUES
 (119, '2017-01-26'),
 (119, '2017-01-26'),
 (119, '2017-01-26'),
-(119, '2017-01-26');
+(119, '2017-01-26'),
+(100, '2017-01-31');
 
 -- --------------------------------------------------------
 
@@ -1793,8 +1806,8 @@ INSERT INTO `sulata_order_counter` (`order_count`, `order_count_date`) VALUES
 --
 
 DROP TABLE IF EXISTS `sulata_order_details`;
-CREATE TABLE `sulata_order_details` (
-  `orderdet__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_order_details` (
+  `orderdet__ID` int(11) NOT NULL AUTO_INCREMENT,
   `orderdet__Order` int(11) NOT NULL COMMENT '|s|category__ID,category__Category',
   `orderdet__Order_UID` varchar(27) NOT NULL,
   `orderdet__Product` int(11) NOT NULL COMMENT '|s|product__ID,product__Name',
@@ -1804,8 +1817,9 @@ CREATE TABLE `sulata_order_details` (
   `orderdet__Quantity` int(11) NOT NULL COMMENT '|s',
   `orderdet__Last_Action_On` datetime NOT NULL,
   `orderdet__Last_Action_By` varchar(64) NOT NULL,
-  `orderdet__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2231 DEFAULT CHARSET=utf8;
+  `orderdet__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`orderdet__ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2233 ;
 
 --
 -- Dumping data for table `sulata_order_details`
@@ -3925,7 +3939,9 @@ INSERT INTO `sulata_order_details` (`orderdet__ID`, `orderdet__Order`, `orderdet
 (2227, 1412, '1412', 12, 'Chicken Nuggets 6 Pieces', 'Chicken Nuggets 6 Pieces', 290, 1, '2017-01-28 14:44:29', 'Truck Cafe', 'Live'),
 (2228, 1413, '1413', 20, 'Spicy Chicken Burger', 'Spicy Chicken Burger', 200, 1, '2017-01-28 14:49:07', 'Truck Cafe', 'Live'),
 (2229, 1414, '1414', 14, 'Golden Fried Wings 6 Pieces', 'Golden Fried Wings 6 Pieces', 290, 1, '2017-01-28 15:49:33', 'Truck Cafe', 'Live'),
-(2230, 1415, '1415', 14, 'Golden Fried Wings 6 Pieces', 'Golden Fried Wings 6 Pieces', 290, 1, '2017-01-28 15:51:23', 'Truck Cafe', 'Live');
+(2230, 1415, '1415', 14, 'Golden Fried Wings 6 Pieces', 'Golden Fried Wings 6 Pieces', 290, 1, '2017-01-28 15:51:23', 'Truck Cafe', 'Live'),
+(2231, 1416, '589047d580397', 1, 'Chicken Burger Combo', 'Chicken Burger Combo', 300, 4, '2017-01-31 13:22:35', 'Super Admin', 'Live'),
+(2232, 1416, '589047d580397', 29, 'Coke', 'Coke', 40, 3, '2017-01-31 13:23:44', 'Super Admin', 'Live');
 
 -- --------------------------------------------------------
 
@@ -3934,8 +3950,8 @@ INSERT INTO `sulata_order_details` (`orderdet__ID`, `orderdet__Order`, `orderdet
 --
 
 DROP TABLE IF EXISTS `sulata_products`;
-CREATE TABLE `sulata_products` (
-  `product__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_products` (
+  `product__ID` int(11) NOT NULL AUTO_INCREMENT,
   `product__Category` int(11) NOT NULL COMMENT '|s|category__ID,category__Category',
   `product__Picture` varchar(128) DEFAULT NULL COMMENT '|s',
   `product__Code` varchar(50) NOT NULL COMMENT '|s',
@@ -3946,8 +3962,10 @@ CREATE TABLE `sulata_products` (
   `product__Status` enum('Available','Unavailable','Discontinued') NOT NULL DEFAULT 'Available' COMMENT '|s',
   `product__Last_Action_On` datetime NOT NULL,
   `product__Last_Action_By` varchar(64) NOT NULL,
-  `product__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+  `product__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`product__ID`),
+  UNIQUE KEY `product__Name` (`product__Name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `sulata_products`
@@ -4008,15 +4026,16 @@ INSERT INTO `sulata_products` (`product__ID`, `product__Category`, `product__Pic
 --
 
 DROP TABLE IF EXISTS `sulata_product_material`;
-CREATE TABLE `sulata_product_material` (
-  `promaterial__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_product_material` (
+  `promaterial__ID` int(11) NOT NULL AUTO_INCREMENT,
   `promaterial__Product` int(11) NOT NULL,
   `promaterial__Material` int(11) NOT NULL,
   `promaterial__Quantity` varchar(10) NOT NULL,
   `promaterial__Last_Action_On` datetime NOT NULL,
   `promaterial__Last_Action_By` varchar(64) NOT NULL,
-  `promaterial__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=267 DEFAULT CHARSET=utf8;
+  `promaterial__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`promaterial__ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=267 ;
 
 --
 -- Dumping data for table `sulata_product_material`
@@ -4219,8 +4238,8 @@ INSERT INTO `sulata_product_material` (`promaterial__ID`, `promaterial__Product`
 --
 
 DROP TABLE IF EXISTS `sulata_promotional_codes`;
-CREATE TABLE `sulata_promotional_codes` (
-  `promotionalcode__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_promotional_codes` (
+  `promotionalcode__ID` int(11) NOT NULL AUTO_INCREMENT,
   `promotionalcode__Code` varchar(255) NOT NULL,
   `promotionalcode__Validity` date NOT NULL,
   `promotionalcode__Type` enum('percentage','flat') NOT NULL,
@@ -4228,8 +4247,9 @@ CREATE TABLE `sulata_promotional_codes` (
   `promotionalcode__Active` enum('Active','Inactive') NOT NULL,
   `promotionalcode__Last_Action_On` datetime NOT NULL,
   `promotionalcode__Last_Action_By` varchar(64) NOT NULL,
-  `promotionalcode__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `promotionalcode__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`promotionalcode__ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `sulata_promotional_codes`
@@ -4245,14 +4265,15 @@ INSERT INTO `sulata_promotional_codes` (`promotionalcode__ID`, `promotionalcode_
 --
 
 DROP TABLE IF EXISTS `sulata_raw_materials`;
-CREATE TABLE `sulata_raw_materials` (
-  `rawmaterial__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_raw_materials` (
+  `rawmaterial__ID` int(11) NOT NULL AUTO_INCREMENT,
   `rawmaterial__Material` varchar(100) NOT NULL COMMENT '|s',
   `rawmaterial__Unit` enum('Each','Grams') NOT NULL COMMENT '|s',
   `rawmaterial__Last_Action_On` datetime NOT NULL,
   `rawmaterial__Last_Action_By` varchar(64) NOT NULL,
-  `rawmaterial__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+  `rawmaterial__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`rawmaterial__ID`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 --
 -- Dumping data for table `sulata_raw_materials`
@@ -4300,16 +4321,19 @@ INSERT INTO `sulata_raw_materials` (`rawmaterial__ID`, `rawmaterial__Material`, 
 --
 
 DROP TABLE IF EXISTS `sulata_settings`;
-CREATE TABLE `sulata_settings` (
-  `setting__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_settings` (
+  `setting__ID` int(11) NOT NULL AUTO_INCREMENT,
   `setting__Setting` varchar(64) NOT NULL COMMENT '|s',
   `setting__Key` varchar(64) NOT NULL,
   `setting__Value` varchar(256) NOT NULL COMMENT '|s',
   `setting__Type` enum('Private','Public','Site') NOT NULL,
   `setting__Last_Action_On` datetime NOT NULL,
   `setting__Last_Action_By` varchar(64) NOT NULL,
-  `setting__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
+  `setting__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`setting__ID`),
+  UNIQUE KEY `setting__Key` (`setting__Key`),
+  UNIQUE KEY `setting__Setting` (`setting__Setting`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `sulata_settings`
@@ -4357,14 +4381,16 @@ INSERT INTO `sulata_settings` (`setting__ID`, `setting__Setting`, `setting__Key`
 --
 
 DROP TABLE IF EXISTS `sulata_uploads`;
-CREATE TABLE `sulata_uploads` (
-  `upload__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_uploads` (
+  `upload__ID` int(11) NOT NULL AUTO_INCREMENT,
   `upload__Title` varchar(128) NOT NULL COMMENT '|s',
   `upload__Picture` varchar(255) NOT NULL COMMENT '|s',
   `upload__Last_Action_On` datetime NOT NULL,
   `upload__Last_Action_By` varchar(64) NOT NULL,
-  `upload__dbState` enum('Live','Deleted') NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `upload__dbState` enum('Live','Deleted') NOT NULL,
+  PRIMARY KEY (`upload__ID`),
+  UNIQUE KEY `upload__Title` (`upload__Title`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `sulata_uploads`
@@ -4380,8 +4406,8 @@ INSERT INTO `sulata_uploads` (`upload__ID`, `upload__Title`, `upload__Picture`, 
 --
 
 DROP TABLE IF EXISTS `sulata_users`;
-CREATE TABLE `sulata_users` (
-  `user__ID` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `sulata_users` (
+  `user__ID` int(11) NOT NULL AUTO_INCREMENT,
   `user__Name` varchar(32) NOT NULL COMMENT '|s',
   `user__Phone` varchar(32) DEFAULT NULL COMMENT '|s',
   `user__Email` varchar(64) NOT NULL COMMENT '|s',
@@ -4394,200 +4420,20 @@ CREATE TABLE `sulata_users` (
   `user__Last_Action_On` datetime NOT NULL,
   `user__Last_Action_By` varchar(64) NOT NULL,
   `user__dbState` enum('Live','Deleted') NOT NULL,
-  `user__IP` varchar(15) NOT NULL DEFAULT '127.0.0.1'
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `user__IP` varchar(15) NOT NULL DEFAULT '127.0.0.1',
+  PRIMARY KEY (`user__ID`),
+  UNIQUE KEY `employee__Email` (`user__Email`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `sulata_users`
 --
 
 INSERT INTO `sulata_users` (`user__ID`, `user__Name`, `user__Phone`, `user__Email`, `user__Password`, `user__Status`, `user__Picture`, `user__Type`, `user__Notes`, `user__Theme`, `user__Last_Action_On`, `user__Last_Action_By`, `user__dbState`, `user__IP`) VALUES
-(1, 'Super Admin', '', 'tahir@sulata.com.pk', 'ZEdGb2FYST0=', 'Active', '', 'Admin', '', 'default', '2014-10-25 16:53:53', 'Installer', 'Live', '::1'),
+(1, 'Super Admin', '', 'tahir@sulata.com.pk', 'ZEdGb2FYST0=', 'Active', '', 'Admin', '', 'default', '2014-10-25 16:53:53', 'Installer', 'Live', '139.190.114.189'),
 (2, 'Truck Cafe', '', 'kitchen@sulata.com.pk', 'ZEdGb2FYST0=', 'Active', NULL, '', NULL, 'default', '2016-12-01 20:56:21', 'Kitchen', 'Live', '::1'),
 (3, 'Danish', '', 'danish.ubaid@sulata.com.pk', 'TVRJeg==', 'Active', NULL, 'Admin', NULL, 'default', '2016-10-25 21:22:24', 'Danish', 'Live', '::1');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `sulata_blank`
---
-ALTER TABLE `sulata_blank`
-  ADD PRIMARY KEY (`__ID`);
-
---
--- Indexes for table `sulata_categories`
---
-ALTER TABLE `sulata_categories`
-  ADD PRIMARY KEY (`category__ID`),
-  ADD UNIQUE KEY `category__Name` (`category__Category`);
-
---
--- Indexes for table `sulata_locations`
---
-ALTER TABLE `sulata_locations`
-  ADD PRIMARY KEY (`location__ID`);
-
---
--- Indexes for table `sulata_menus`
---
-ALTER TABLE `sulata_menus`
-  ADD PRIMARY KEY (`menu__ID`),
-  ADD UNIQUE KEY `menu__Title` (`menu__Title`);
-
---
--- Indexes for table `sulata_menu_details`
---
-ALTER TABLE `sulata_menu_details`
-  ADD PRIMARY KEY (`menudetail__ID`);
-
---
--- Indexes for table `sulata_notices`
---
-ALTER TABLE `sulata_notices`
-  ADD PRIMARY KEY (`notice__ID`),
-  ADD UNIQUE KEY `notice__Subject` (`notice__Subject`);
-
---
--- Indexes for table `sulata_orders`
---
-ALTER TABLE `sulata_orders`
-  ADD PRIMARY KEY (`order__ID`),
-  ADD UNIQUE KEY `order__UID` (`order__UID`);
-
---
--- Indexes for table `sulata_order_details`
---
-ALTER TABLE `sulata_order_details`
-  ADD PRIMARY KEY (`orderdet__ID`);
-
---
--- Indexes for table `sulata_products`
---
-ALTER TABLE `sulata_products`
-  ADD PRIMARY KEY (`product__ID`),
-  ADD UNIQUE KEY `product__Name` (`product__Name`);
-
---
--- Indexes for table `sulata_product_material`
---
-ALTER TABLE `sulata_product_material`
-  ADD PRIMARY KEY (`promaterial__ID`);
-
---
--- Indexes for table `sulata_promotional_codes`
---
-ALTER TABLE `sulata_promotional_codes`
-  ADD PRIMARY KEY (`promotionalcode__ID`);
-
---
--- Indexes for table `sulata_raw_materials`
---
-ALTER TABLE `sulata_raw_materials`
-  ADD PRIMARY KEY (`rawmaterial__ID`);
-
---
--- Indexes for table `sulata_settings`
---
-ALTER TABLE `sulata_settings`
-  ADD PRIMARY KEY (`setting__ID`),
-  ADD UNIQUE KEY `setting__Key` (`setting__Key`),
-  ADD UNIQUE KEY `setting__Setting` (`setting__Setting`);
-
---
--- Indexes for table `sulata_uploads`
---
-ALTER TABLE `sulata_uploads`
-  ADD PRIMARY KEY (`upload__ID`),
-  ADD UNIQUE KEY `upload__Title` (`upload__Title`);
-
---
--- Indexes for table `sulata_users`
---
-ALTER TABLE `sulata_users`
-  ADD PRIMARY KEY (`user__ID`),
-  ADD UNIQUE KEY `employee__Email` (`user__Email`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `sulata_blank`
---
-ALTER TABLE `sulata_blank`
-  MODIFY `__ID` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sulata_categories`
---
-ALTER TABLE `sulata_categories`
-  MODIFY `category__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `sulata_locations`
---
-ALTER TABLE `sulata_locations`
-  MODIFY `location__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
---
--- AUTO_INCREMENT for table `sulata_menus`
---
-ALTER TABLE `sulata_menus`
-  MODIFY `menu__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `sulata_menu_details`
---
-ALTER TABLE `sulata_menu_details`
-  MODIFY `menudetail__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=185;
---
--- AUTO_INCREMENT for table `sulata_notices`
---
-ALTER TABLE `sulata_notices`
-  MODIFY `notice__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `sulata_orders`
---
-ALTER TABLE `sulata_orders`
-  MODIFY `order__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1416;
---
--- AUTO_INCREMENT for table `sulata_order_details`
---
-ALTER TABLE `sulata_order_details`
-  MODIFY `orderdet__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2231;
---
--- AUTO_INCREMENT for table `sulata_products`
---
-ALTER TABLE `sulata_products`
-  MODIFY `product__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
---
--- AUTO_INCREMENT for table `sulata_product_material`
---
-ALTER TABLE `sulata_product_material`
-  MODIFY `promaterial__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=267;
---
--- AUTO_INCREMENT for table `sulata_promotional_codes`
---
-ALTER TABLE `sulata_promotional_codes`
-  MODIFY `promotionalcode__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `sulata_raw_materials`
---
-ALTER TABLE `sulata_raw_materials`
-  MODIFY `rawmaterial__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
---
--- AUTO_INCREMENT for table `sulata_settings`
---
-ALTER TABLE `sulata_settings`
-  MODIFY `setting__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
---
--- AUTO_INCREMENT for table `sulata_uploads`
---
-ALTER TABLE `sulata_uploads`
-  MODIFY `upload__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `sulata_users`
---
-ALTER TABLE `sulata_users`
-  MODIFY `user__ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
