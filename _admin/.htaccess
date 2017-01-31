@@ -7,3 +7,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteRule ^index(/.+)?$ index.php$1 [NC,L]
 RewriteRule ^([^/.]+?)(/.+)?/$ $1.php$2 [L]
+#RewriteRule .* index.php [L,QSA]

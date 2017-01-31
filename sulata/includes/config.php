@@ -40,8 +40,8 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'pos');
     define('DB_USER', 'root');
-    define('DB_PASSWORD', 'root1234');
-    define('DB_PASSWORD2', 'root');
+    define('DB_PASSWORD', 'root');
+    define('DB_PASSWORD2', 'root1234');
     //MySQL DB2 Settings
     define('DB2_HOST', 'localhost');
     define('DB2_NAME', 'truckcaf_pos');
@@ -63,8 +63,8 @@ if (!strstr($_SERVER['HTTP_HOST'], ".")) {
     define('DB_HOST', 'localhost');
     define('DB_NAME', 'pos');
     define('DB_USER', 'root');
-    define('DB_PASSWORD', 'root1234');
-    define('DB_PASSWORD2', 'root');
+    define('DB_PASSWORD', 'root');
+    define('DB_PASSWORD2', 'root1234');
     //MySQL DB2 Settings
     define('DB2_HOST', 'localhost');
     define('DB2_NAME', 'truckcaf_pos');
