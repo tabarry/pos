@@ -11,7 +11,7 @@ $pageTitle = 'Manage Orders';
 
 //Make select statement. The $SqlFrom is also used in $sqlP below.
 $sqlSelect = "SELECT order__ID,order__UID,order__Session,order__Number,order__Customer_Name,order__Mobile_Number,DATE_FORMAT(order__Date,'%M %d, %Y %h:%i %p') AS order__Date2,(SELECT TIMEDIFF('" . date('Y-m-d H:i:s') . "',order__Date ) ) AS timeTaken  ";
-$sqlFrom = " FROM sulata_orders WHERE order__dbState='Live' AND order__Status='Received' ";
+$sqlFrom = " FROM sulata_orders WHERE order__dbState='Live' AND order__Status='Received' AND DATE_FORMAT(order__Date,'%Y-%m-%d')='".date('Y-m-d')."'";
 $sql = $sqlSelect . $sqlFrom;
 
 $editAccess = FALSE;

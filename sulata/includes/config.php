@@ -11,8 +11,8 @@ error_reporting("E_ALL & ~E_NOTICE & ~E_DEPRECATED");
 //Include the language file
 include('language.php');
 //MISC SETTINGS
-define('LOCAL_URL', 'http://localhost:8080/pos/');
-define('WEB_URL', 'http://192.168.15.111:8080/pos/');
+define('LOCAL_URL', 'http://localhost/pos/');
+define('API_URL', 'http://www.truckcafe.pk/pos/');
 define('API_URL', 'http://www.truckcafe.pk/pos/api/');
 //
 define('SESSION_PREFIX', '11d_');
